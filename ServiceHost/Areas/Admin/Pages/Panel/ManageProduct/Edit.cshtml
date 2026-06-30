@@ -1,0 +1,123 @@
+﻿@page "{id}"
+@model ServiceHost.Areas.Admin.Pages.Panel.ManageProduct.EditModel
+@{
+    ViewData["Title"] = "ویرایش محصول";
+}
+
+<div class="pagetitle">
+    <h1 class="mb-3">ویرایش محصول: @Model.Command.Name</h1>
+</div>
+
+<style>
+    .img-preview {
+        width: 100%;
+        max-height: 120px;
+        object-fit: contain;
+        margin-top: 10px;
+        border: 2px dashed #60a5fa;
+        border-radius: 8px;
+    }
+
+    .current-img {
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+    }
+</style>
+
+<section class="section">
+    <div class="card">
+        <div class="card-body">
+            <form class="row g-3 mt-2" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Command.Id" />
+
+                <div class="col-md-6">
+                    <label class="form-label">نام محصول</label>
+                    <input type="text" class="form-control" asp-for="Command.Name" id="productName" oninput="makeSeoInputs()">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">دسته بندی</label>
+                    <select class="form-select" asp-for="Command.CategoryID" asp-items="Model.Categories">
+                        <option value="0">انتخاب کنید...</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">توضیحات کوتاه</label>
+                    <textarea class="form-control" asp-for="Command.Description" rows="3"></textarea>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">قیمت (تومان)</label>
+                    <input type="number" class="form-control" asp-for="Command.Price">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">برند</label>
+                    <input type="text" class="form-control" asp-for="Command.Mark">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">سایز</label>
+                    <input type="text" class="form-control" asp-for="Command.Size">
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">رنگ</label>
+                    <input type="color" class="form-control form-control-color w-100" asp-for="Command.Color">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">اسلاگ (SEO)</label>
+                    <input type="text" class="form-control" asp-for="Command.Slug" id="productSlug">
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">کلمات کلیدی (SEO)</label>
+                    <input type="text" class="form-control" asp-for="Command.Keywords" id="productKeywords">
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">توضیحات متا (SEO)</label>
+                    <input type="text" class="form-control" asp-for="Command.MetaDescription" id="productMeta">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">عکس اصلی</label>
+                    <input type="file" class="form-control" asp-for="Command.OrginalImageFile" accept="image/*" onchange="showPreview(this, 'previewOrg')">
+                    <img id="previewOrg" src="~/@Model.Command.OrginalImage" class="img-preview" />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">عکس فرعی 1</label>
+                    <input type="file" class="form-control" asp-for="Command.MoreImage1File" accept="image/*" onchange="showPreview(this, 'preview1')">
+                    <img id="preview1" class="img-preview" src="~/@Model.Command.MoreImage1" />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">عکس فرعی 2</label>
+                    <input type="file" class="form-control" asp-for="Command.MoreImage2File" accept="image/*" onchange="showPreview(this, 'preview2')">
+                    <img id="preview2" class="img-preview" src="~/@Model.Command.MoreImage2" />
+                </div>
+                
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn btn-warning">ذخیره تغییرات</button>
+                    <a asp-page="./List" class="btn btn-dark">بازگشت</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        function showPreview(input, id) {
+            const preview = document.getElementById(id);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = e => { preview.src = e.target.result; preview.style.display = 'block'; }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function makeSeoInputs() {
+            const name = document.getElementById('productName').value;
+            document.getElementById('productSlug').value = name.trim().toLowerCase().replace(/\s+/g, '-');
+            document.getElementById('productKeywords').value = name.split(' ').join(', ');
+            document.getElementById('productMeta').value = "ویرایش محصول " + name + " در فروشگاه پارسو شاپ";
+        }
+    </script>
+}

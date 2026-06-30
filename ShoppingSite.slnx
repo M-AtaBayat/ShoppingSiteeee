@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/ShoppingSiteManagement/" />
+  <Folder Name="/ShoppingSiteManagement/SM.Application/">
+    <Project Path="ShoppingSiteManagement.Application.Contracts/ShoppingSiteManagement.Application.Contracts.csproj" />
+    <Project Path="ShoppingSiteManagement.Application/ShoppingSiteManagement.Application.csproj" />
+  </Folder>
+  <Folder Name="/ShoppingSiteManagement/SM.Domain/">
+    <Project Path="ShoppingSiteManagement.Domain/ShoppingSiteManagement.Domain.csproj" />
+  </Folder>
+  <Folder Name="/ShoppingSiteManagement/SM.Infrastructure/">
+    <Project Path="01_ShoppingSiteQuery/01_ShoppingSiteQuery.csproj" Id="5a0364a9-f3ab-4155-a3bb-5f3d1293ccf6" />
+    <Project Path="ShoppingSiteManagement.Infrastructure.Config/ShoppingSiteManagement.Infrastructure.Config.csproj" Id="5217dc08-5ca8-4e95-8843-52fd4e9a8c11" />
+    <Project Path="ShoppingSiteManagement.Infrastructure.EFCore/ShoppingSiteManagement.Infrastructure.EFCore.csproj" />
+  </Folder>
+  <Project Path="../Borujerd-360/0_Framework/0_Framework.csproj" />
+  <Project Path="ServiceHost/ServiceHost.csproj" Id="5533bad2-de5e-42f9-8a55-c23fb474f0e8" />
+</Solution>

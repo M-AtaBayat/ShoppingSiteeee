@@ -1,0 +1,1 @@
+console.log("Designed By Mohammad Ata Bayat \n Github : https://github.com/M-AtaBayat ");

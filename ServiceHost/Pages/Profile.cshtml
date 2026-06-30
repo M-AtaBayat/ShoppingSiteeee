@@ -1,0 +1,131 @@
+﻿@page
+@model ServiceHost.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<main style="padding-bottom: 150px;">
+    <div class="profile-page">
+
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            <div class="profile-email mt-2">@Model.UserEmail</div>
+        </div>
+
+        <div class="profile-menu">
+
+            <a asp-page="./CurrentOrders" class="menu-item">
+                <div class="menu-left">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24">
+                            <path d="M3 3h18v18H3z" />
+                            <path d="M3 9h18" />
+                        </svg>
+                    </div>
+                    <span class="menu-title">سفارش‌های جاری</span>
+                </div>
+                <span class="menu-arrow">›</span>
+            </a>
+            <a asp-page="./OrderTracking" class="menu-item">
+                <div class="menu-left">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                        </svg>
+                    </div>
+                    <span class="menu-title">پیگیری سفارش</span>
+                </div>
+                <span class="menu-arrow">›</span>
+            </a>
+
+            <a asp-page="./Delivered" class="menu-item">
+                <div class="menu-left">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                    </div>
+                    <span class="menu-title">تحویل شده</span>
+                </div>
+                <span class="menu-arrow">›</span>
+            </a>
+
+            <a href="#" class="menu-item" onclick="shareSite()">
+                <div class="menu-left">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24">
+                            <circle cx="18" cy="5" r="3" />
+                            <circle cx="6" cy="12" r="3" />
+                            <circle cx="18" cy="19" r="3" />
+                            <line x1="8.6" y1="13.5" x2="15.4" y2="17.5" />
+                            <line x1="15.4" y1="6.5" x2="8.6" y2="10.5" />
+                        </svg>
+                    </div>
+                    <span class="menu-title">معرفی به دوستان</span>
+                </div>
+                <span class="menu-arrow">›</span>
+            </a>
+
+            <a href="tel:09945633104" class="menu-item">
+                <div class="menu-left">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3 5.18 2 2 0 0 1 5 3h3a2 2 0 0 1 2 1.72c.12.81.3 1.6.54 2.36a2 2 0 0 1-.45 2.11L9 10a16 16 0 0 0 5 5l.81-.09a2 2 0 0 1 2.11.45c.76.24 1.55.42 2.36.54A2 2 0 0 1 22 16.92z" />
+                        </svg>
+                    </div>
+                    <span class="menu-title">تماس با پشتیبانی</span>
+                </div>
+                <span class="menu-arrow">›</span>
+            </a>
+            <a asp-page-handler="Logout" class="menu-item">
+                <div class="menu-left">
+                    <div class="menu-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+                             viewBox="0 0 24 24">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                            <polyline points="16 17 21 12 16 7" />
+                            <line x1="21" y1="12" x2="9" y2="12" />
+                        </svg>
+                    </div>
+                    <span class="menu-title">خروج از حساب کاربری</span>
+                </div>
+                <span class="menu-arrow">›</span>
+            </a>
+
+        </div>
+    </div>
+</main>
+
+<script>
+    function shareSite() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'پارسو شاپ \n',
+                text: ' مدرن ترین پوشاک وارداتی اروپایی با قیمت استثنایی \n  وارد کننده برند های esmara و Crivit و LIVERGY ',
+                url: window.location.origin
+            });
+        } else {
+            alert('اشتراک گذاری تنها از طریق موبایل امکان پذیر است. \n لینک سایت : \n' + window.location.origin);
+        }
+    }
+</script>
+
+<script>
+    document.getElementById("homepage").classList.remove("active");
+    document.getElementById("productspage").classList.remove("active");
+    document.getElementById("basketpage").classList.remove("active");
+    document.getElementById("offerpage").classList.remove("active");    
+    document.getElementById("profilepage").classList.add("active");
+</script>

@@ -1,0 +1,113 @@
+﻿@page
+@model ServiceHost.Pages.AboutModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParsoShop | About</title>
+    <link rel="stylesheet" href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/assets/css/MainStyle.css">
+</head>
+
+<body>
+
+    <div class="about-page">
+        <a href="./Index" class="card-btn">بازگشت</a>
+
+        <div class="about-header">
+            <h1>درباره <span style="font-family: 'mj';">پارسو</span></h1>
+            <p>مدرن ترین پوشاک وارداتی اروپایی با قیمت استثنایی</p>
+        </div>
+
+        <!-- آدرس -->
+        <div class="card">
+            <div class="card-title"><i class="bi bi-geo-alt-fill"></i> آدرس فروشگاه</div>
+            <div class="card-content">
+                تهران، چیتگر، مجتمع تجاری طوبی، طبقه اول، راهروی A، پلاک ۲۳۶
+                <br>
+                <a href="https://neshan.org/maps/places/6168cdb57b46463584f8500d76130ecb#c35.730-51.251-16z-0p" target="_blank"
+                   class="card-btn">تماشا روی نقشه</a>
+            </div>
+        </div>
+
+        <!-- تماس -->
+        <div class="card">
+            <div class="card-title"><i class="bi bi-telephone-fill"></i> تماس با پشتیبانی</div>
+            <div class="card-content">
+                <a href="tel:09120724494" class="card-btn">تماس بگیر</a>
+            </div>
+        </div>
+
+        <!-- عکس فروشگاه -->
+        <div class="card">
+            <div class="card-title"><i class="bi bi-building"></i> نمای فروشگاه</div>
+            <div class="store-img">
+                <img src="./assets/images/shop.png" alt="store">
+            </div>
+        </div>
+
+        <!-- شبکه‌های اجتماعی -->
+        <div class="card">
+            <div class="card-title"><i class="bi bi-share-fill"></i> ارتباط با ما</div>
+            <div class="socials">
+                <a href="https://www.instagram.com/parso___shop?igsh=MWV5bjk4NGVjdmNneQ=="><i class="bi bi-instagram"></i> اینستاگرام</a>
+                <a href="https://t.me/parso_shop1"><i class="bi bi-telegram"></i> تلگرام</a>
+                <!-- <a href="#"><i class="bi bi-whatsapp"></i> واتساپ</a> -->
+            </div>
+        </div>
+
+        <!-- ساعت کاری -->
+        <div class="card">
+            <div class="card-title"><i class="bi bi-clock-fill"></i> ساعت کاری</div>
+            <div class="card-content">
+                همه‌روزه 11 صبح تا 10 شب
+            </div>
+        </div>
+
+        <!-- تاریخ افتتاح -->
+        <!-- <div class="card">
+            <div class="card-title"><i class="bi bi-calendar-check-fill"></i> تاریخ افتتاح فروشگاه</div>
+            <div class="card-content">
+                دی ماه 1404
+            </div>
+        </div> -->
+        <!-- قوانین -->
+        <div class="card">
+            <div class="card-title"><i class="bi bi-shield-lock-fill"></i> قوانین</div>
+            <div class="card-content">
+                هرگونه کپی‌برداری از این قالب ممنوع است.
+            </div>
+        </div>
+
+        <!-- برنامه نویس -->
+        <div class="card">
+            <div class="card-title"><i class="bi bi-person-badge-fill"></i> توسعه‌دهنده</div>
+            <div class="card-content">
+                طراحی و توسعه توسط <a href="https://github.com/M-AtaBayat" target="_blank">محمد عطا بیات</a>
+                <br>
+                سفارشات طراحی سایت :
+                <div class="socials">
+                    <a href="tel:09945633104" target="_blank"><i class="bi bi-telephone"></i> شماره تماس</a>
+                    <a href="https://github.com/M-AtaBayat" target="_blank"><i class="bi bi-github"></i> گیت هاب</a>
+                    <a href="https://t.me/Mr_AtaBayat" target="_blank"><i class="bi bi-telegram"></i> تلگرام</a>
+                    <a href="https://wa.me/qr/BAL2PGKT7AZ3C1" target="_blank"><i class="bi bi-whatsapp"></i> واتساپ</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            © تمامی حقوق محفوظ است
+        </div>
+
+    </div>
+
+    <script src="~/assets/js/Sequrity.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+﻿@page
+@model BasketModel
+@{
+    ViewData["Title"] = "سبد خرید";
+}
+
+<main style="padding-top: 0px; padding-bottom: 150px;">
+    <div class="container mt-4">
+
+        @if (Model.Items == null || !Model.Items.Any())
+        {
+            <div class="text-center mt-5">
+                <i class="bi bi-cart-x text-muted" style="font-size: 4rem;"></i>
+                <h5 class="mt-3">سبد خرید شما خالی است</h5>
+                <a asp-page="/Products" class="btn btn-outline-dark mt-3">مشاهده محصولات</a>
+            </div>
+        }
+        else
+        {
+            @foreach (var item in Model.Items)
+            {
+                <div class="cart-item">
+                    <div class="row w-100 align-items-center">
+                        <div class="col">
+                            <div class="cart-details text-right">
+                                <h4>@item.ProductName</h4>
+
+                                <div class="info-row"><span class="info-label">سایز:</span> @item.Size</div>
+                                <div class="info-row">
+                                    <span class="info-label">رنگ:</span>
+                                    <span class="color-box" style="background:@item.Color;"></span>
+                                </div>
+
+                                @if (item.HasDiscount)
+                                {
+                                    <p class="mb-0 mt-2">
+                                        <span class="price text-danger" style="font-weight:bold;">@item.DiscountedPrice.ToString("N0") تومان</span>
+                                    </p>
+                                    <p class="mb-0">
+                                        <del class="old-price text-muted" style="font-size:0.85rem;">@item.UnitPrice.ToString("N0") تومان</del>
+                                        <span class="discount badge bg-danger mr-2">@item.DiscountRate% تخفیف</span>
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="price mt-2" style="font-weight:bold;">@item.UnitPrice.ToString("N0") تومان</p>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-4 text-left">
+                            <img src="/@item.ProductImage" alt="@item.ProductName" class="img-fluid rounded">
+                        </div>
+
+                        <div class="w-100 text-left row justify-content-between pr-5 mt-2 align-items-center">
+                            <div class="qty-selector">
+                                <form id="dec-form-@item.Id" method="post" asp-page-handler="Decrease" style="display:none;">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                </form>
+                                <form id="inc-form-@item.Id" method="post" asp-page-handler="Increase" style="display:none;">
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                </form>
+
+                                <button class="decrease" type="button" onclick="document.getElementById('dec-form-@item.Id').submit();">-</button>
+                                <input type="text" value="@item.Count" readonly>
+                                <button class="increase" type="button" onclick="document.getElementById('inc-form-@item.Id').submit();">+</button>
+                            </div>
+
+                            <form method="post" asp-page-handler="Remove" class="m-0 p-0">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-outline-danger">حذف</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="cart-summary text-right mt-5">
+                <h4>جمع کل</h4>
+                <div class="total mt-3">
+                    <span>مجموع:</span>
+                    <span id="totalPrice" class="price">@Model.TotalPrice.ToString("N0") تومان</span>
+                </div>
+                <div class="total mt-2">
+                    <span>تعداد:</span>
+                    <span id="totalCount">@Model.TotalItemsCount کالا</span>
+                </div>
+
+                <form method="post" asp-page-handler="Checkout" class="mt-4">
+                    <button type="submit" class="checkout-btn w-100 d-block text-center text-dark" style="border:none; cursor:pointer;">
+                        ادامه به پرداخت
+                    </button>
+                </form>
+            </div>
+        }
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.StockErrorMessage))
+    {
+        <div class="modal fade show" id="stockErrorModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content text-right" style="border-radius:15px;">
+                    <div class="modal-header border-0 pb-0">
+                        <h5 class="modal-title text-danger w-100">موجودی ناکافی</h5>
+                    </div>
+                    <div class="modal-body py-4">
+                        <div class="alert alert-warning mt-3 mb-0">@Model.StockErrorMessage</div>
+                    </div>
+                    <div class="modal-footer border-0 pt-0">
+                        <button type="button" class="btn btn-dark w-100" onclick="document.getElementById('stockErrorModal').style.display='none'">متوجه شدم</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</main>
+<script>
+    document.getElementById("homepage").classList.remove("active");
+    document.getElementById("productspage").classList.remove("active");
+    document.getElementById("basketpage").classList.add("active");
+    document.getElementById("offerpage").classList.remove("active");
+    document.getElementById("profilepage").classList.remove("active");
+</script>

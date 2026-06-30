@@ -1,0 +1,107 @@
+﻿@page "{slug}"
+@using ShoppingSiteManagement.Application.Contracts.CartAPC
+@model ServiceHost.Pages.ProductDetailModel
+@{
+    
+}
+
+<main style="padding-bottom: 150px;" class="text-right mx-3">
+    <div class="container py-4 pb-5" style="overflow-x: hidden;">
+
+        <nav class="breadcrumb">
+            <a class="px-2" asp-page="/Index">صفحه اصلی</a> / <span class="px-2">@Model.Product.Category</span> / <span class="px-2">@Model.Product.Name</span>
+        </nav>
+
+        <div>
+            <div class="gallery-container" dir="ltr">
+                <div class="gallery-track" id="galleryTrack">
+                    @if (!string.IsNullOrWhiteSpace(Model.Product.Picture))
+                    {
+                        <div class="gallery-item active" style="background-image:url('/@Model.Product.Picture');"></div>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.Product.Picture1))
+                    {
+                        <div class="gallery-item" style="background-image:url('/@Model.Product.Picture1');"></div>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(Model.Product.Picture2))
+                    {
+                        <div class="gallery-item" style="background-image:url('/@Model.Product.Picture2');"></div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="gallery-pagination mb-3" dir="ltr" id="galleryDots"></div>
+
+        <div class="product-info text-right">
+            <h1 class="product-title">@Model.Product.Name</h1>
+            <p class="text-muted">@Model.Product.Description</p>
+
+            <div class="info-row">
+                <span class="info-label">سایز و اندازه:</span>
+                <span class="badge bg-light text-dark border">@Model.Product.Size</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">مارک:</span>
+                <span>@Model.Product.Mark</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">رنگ:</span>
+                <span class="color-box shadow-sm" style="background:@Model.Product.Color; border: 1px solid #ddd;"></span>
+            </div>
+
+            <div class="info-row align-items-center">
+                <div>
+                    @if (Model.Product.HasDiscount)
+                    {
+                        <span class="price">@Model.Product.PriceWithDiscount تومان</span><br>
+                        <span class="old-price text-danger">@Model.Product.Price.ToString("N0") تومان</span>
+                        <span class="discount badge bg-danger">@Model.Product.DiscountRate% تخفیف</span>
+                    }
+                    else
+                    {
+                        <span class="price">@Model.Product.Price.ToString("N0") تومان</span>
+                    }
+                </div>
+            </div>
+
+            <div class="mt-4">
+                @if (Model.CountInCart >= Model.Product.StockCount)
+                {
+                    <button type="submit" class="btn-add-to-cart add-cart w-100" disabled>
+                        حداکثر موجودی در سبد شماست!
+                    </button>
+                    <p class="text-danger small mt-2 text-center">
+                        شما تمام موجودی انبار را در سبد خرید خود دارید.
+                    </p>
+                }
+                else
+                {
+                    <form method="post" asp-page-handler="AddToCart" asp-route-slug="@Model.Product.Slug" class="text-center">
+                        <input type="hidden" name="productId" value="@Model.Product.Id" />
+                        <button type="submit" class="btn-add-to-cart mb-3 add-cart w-100">
+                            افزودن به سبد خرید
+                            
+                        </button>
+                        @if (Model.CountInCart > 0)
+                        {
+                            <b>
+                            <span class="text-warning font-weight-bold small">@Model.CountInCart عدد در سبد دارید.</span>
+                            </b>
+                        }
+                    </form>
+                }
+                
+            </div>
+        </div>
+
+    </div>
+</main>
+<script>
+    document.getElementById("homepage")?.classList.remove("active");
+            document.getElementById("productspage")?.classList.remove("active");
+            document.getElementById("basketpage")?.classList.remove("active");
+            document.getElementById("offerpage")?.classList.remove("active");
+            document.getElementById("profilepage")?.classList.remove("active");
+</script>

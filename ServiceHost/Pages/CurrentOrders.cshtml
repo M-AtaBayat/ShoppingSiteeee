@@ -1,0 +1,80 @@
+﻿@page
+@model ServiceHost.Pages.CurrentOrdersModel
+@{
+    ViewData["Title"] = "سفارش‌های جاری";
+}
+
+<div class="text-right">
+    <a asp-page="/Profile" class="text-dark card-btn m-3">بازگشت</a>
+</div>
+
+<main style="padding-bottom: 150px !important; padding: 2rem; padding-top: 0;">
+    <div class="container text-right pt-0">
+
+        @if (!Model.Orders.Any())
+        {
+            <div class="text-center mt-5">
+                <i class="bi bi-box-seam text-muted" style="font-size: 4rem;"></i>
+                <h5 class="mt-3">شما هیچ سفارش جاری ندارید</h5>
+                <a asp-page="/Products" class="btn btn-outline-dark mt-3">مشاهده محصولات</a>
+            </div>
+        }
+        else
+        {
+            @foreach (var order in Model.Orders)
+            {
+                <div class="order-card pt-5 mb-4">
+                    <div class="order-header">
+                        <div class="order-code">کد پیگیری: <strong>@order.TrackingCode</strong></div>
+                        <div class="order-status @order.StatusCssClass">@order.Status</div>
+                    </div>
+
+                    <div class="order-info">
+                        <div class="info-box">
+                            <span>تاریخ ثبت</span>
+                            @order.CreationDate
+                        </div>
+                        <div class="info-box">
+                            <span>شماره تماس گیرنده</span>
+                            @order.ReceiverPhone
+                        </div>
+                        <div class="info-box">
+                            <span>آدرس گیرنده</span>
+                            @order.Address
+                        </div>
+                    </div>
+
+                    <div class="products">
+                        @foreach (var item in order.Items)
+                        {
+                            <div class="product-item">
+                                <div>
+                                    <span>@item.ProductName</span>
+                                    <small>
+                                        <div class="info-row"><span class="info-label">سایز:</span> @item.Size</div>
+                                        <div class="info-row">
+                                            <span class="info-label">رنگ:</span>
+                                            <span class="color-box" style="background:@item.Color; width: 15px; height: 15px;"></span>
+                                        </div>
+                                    </small>
+                                </div>
+                                <div>@item.Price.ToString("N0") تومان</div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="total">مبلغ کل: @order.FinalAmount.ToString("N0") تومان</div>
+                </div>
+            }
+        }
+
+    </div>
+</main>
+
+<script>
+    document.getElementById("homepage").classList.remove("active");
+    document.getElementById("productspage").classList.remove("active");
+    document.getElementById("basketpage").classList.remove("active");
+    document.getElementById("offerpage").classList.remove("active");
+    document.getElementById("profilepage").classList.add("active");
+</script>

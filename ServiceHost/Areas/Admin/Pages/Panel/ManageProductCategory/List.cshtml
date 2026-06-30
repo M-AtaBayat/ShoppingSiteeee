@@ -1,0 +1,85 @@
+﻿@page
+@model ServiceHost.Areas.Admin.Pages.Panel.ManageProductCategory.ListModel
+@{
+    ViewData["Title"] = "لیست دسته بندی محصولات";
+}
+<div class="pagetitle">
+    <h1 class="mb-3">دسته بندی محصولات</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Admin" asp-page="/Index">صفحۀ اصلی</a></li>
+            <li class="breadcrumb-item active">دسته بندی محصولات</li>
+        </ol>
+    </nav>
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">جستجو</h5>
+                    <form class="row g-3 justify-content-between" method="get">
+                        <div class="col-md">
+                            <input type="text" class="form-control" asp-for="SearchModel.Name"
+                                   placeholder="جستجو بر اساس نام دسته‌بندی...">
+                        </div>
+                        <div class="">
+                            <button type="submit" class="btn m-1 btn-sm btn-info">جستجو</button><br>
+                            <a asp-page="./List" class="btn m-1 btn-sm btn-success">نمایش همه</a>
+                            <a class="btn btn-primary m-1 btn-sm" asp-page="./Create">افزودن دسته بندی جدید</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">اطلاعات</h5>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col" style="min-width: 100px;">نام</th>
+                                    <th scope="col" style="min-width: 150px;">نام پشت صحنه</th>
+                                    <th scope="col" style="min-width: 100px;">وضعیت</th>
+                                    <th scope="col" style="min-width: 200px;">عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ProductCategories)
+                                {
+                                    <tr>
+                                        <th scope="row" class="number-cell">@item.Id</th>
+                                        <td>@item.Name</td>
+                                        <td>@item.Category</td>
+                                        <td>
+                                            @if (!item.IsDeleted)
+                                            {
+                                                <span class="text-primary">فعال</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-danger">غیر فعال</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            @if (!item.IsDeleted)
+                                            {
+                                                <a asp-page="./List" asp-page-handler="UnActivate" asp-route-id="@item.Id" class="btn btn-sm btn-danger">غیر فعال کردن</a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-page="./List" asp-page-handler="Activate" asp-route-id="@item.Id" class="btn btn-sm btn-info">فعال کردن</a>
+                                            }
+                                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning"><i class="ri ri-edit-2-fill"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

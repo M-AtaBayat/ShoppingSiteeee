@@ -1,0 +1,62 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "صفحه اصلی";
+    ViewData["MetaDescription"] = "فروشگاه پارسو، بهترین برندهای esmara و crivit با کمترین قیمت.";
+}
+
+<main class="" style="padding-bottom: 150px;">
+
+    <section>
+        <div class="container text-right" style="padding-top: 20px; ">
+            <div class="mobile-hero-card js-tilt-mobile ">
+                <div class="hero-bg-layer"></div>
+                <div class="hero-content">
+                    <span class="hero-badge">فروشگاه پوشاک</span>
+                    <h2 class="hero-title" style="font-family: 'mj' !important;">پارسو شاپ <span class="hero-badge py-0 px-1" style="font-size: 1rem;">آلمانا</span></h2>
+                    <p class="hero-desc">
+                        مدرن ترین پوشاک وارداتی اروپایی با قیمت استثنایی
+                        <br>
+                        وارد کننده برند های <span class="hero-badge py-0 px-1" style="font-size: .8rem;">esmara</span> و <span class="hero-badge py-0 px-1" style="font-size: .8rem;">Crivit</span> و <span class="hero-badge py-0 px-1" style="font-size: .8rem;">LIVERGY</span>
+                    </p>
+
+                    <a href="/Products" class="hero-btn f-small p-2 pl-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                             stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                        مشاهده محصولات
+                    </a>
+                    <a href="/About" class="hero-btn about f-small p-1 pl-3">
+                        <svg xmlns="" width="0" height="18" viewBox="" fill="none" stroke="currentColor" stroke-width="0" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="0" y1="0" x2="0" y2="0"></line>
+                            <polyline points=""></polyline>
+                        </svg>
+                        درباره ما
+                    </a>
+                </div>
+                <div class="hero-circle"></div>
+            </div>
+        </div>
+    </section>
+
+    @await Component.InvokeAsync("DiscountProducts")
+
+    @await Component.InvokeAsync("PopularProducts")
+
+    @await Component.InvokeAsync("LatestProducts")
+
+    <section class="all-products-section">
+        <div class="container">
+            <div class="all-products-wrapper">
+                <a asp-page="./Products" class="all-products-btn">مشاهده همه محصولات</a>
+                <p class="all-products-subtitle mb-0 pb-0 mt-3">
+                    جدیدترین و محبوب‌ترین محصولات را همین حالا ببینید.
+                </p>
+            </div>
+        </div>
+    </section>
+
+</main>

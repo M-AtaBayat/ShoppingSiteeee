@@ -1,0 +1,142 @@
+﻿@page
+@model ServiceHost.Pages.LoginModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود | پارسو شاپ</title>
+    <link rel="stylesheet" href="~/Admin/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <style>
+        @@font-face { font-family: 'vazir'; src: url("/assets/fonts/Vazir-Bold.ttf"); }
+        * { box-sizing: border-box; font-family: 'vazir', sans-serif; }
+        body { margin: 0; background: #f4f6f8; min-height: 100vh; }
+        .login-page { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; overflow: hidden; }
+        .bg-glow { position: absolute; width: 300px; height: 300px; border-radius: 50%; filter: blur(80px); opacity: 0.6; }
+        .bg-glow-1 { background: #FFD700; top: -80px; right: -80px; }
+        .bg-glow-2 { background: #b0b0b0; bottom: -80px; left: -80px; }
+        .login-card { width: 100%; max-width: 380px; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(25px); border-radius: 28px; padding: 35px 30px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08); position: relative; z-index: 2; }
+        .login-title { font-size: 28px; font-weight: 900; color: #333; margin-bottom: 8px; text-align: center; }
+        .login-sub { font-size: 13px; color: #777; margin-bottom: 30px; text-align: center; }
+        .input-group { position: relative; margin-bottom: 22px; }
+        .input-group input { width: 100%; padding: 16px 14px; border-radius: 14px; border: 1px solid #ddd; background: rgba(255, 255, 255, 0.9); font-size: 14px; outline: none; transition: all 0.3s ease; text-align: left; }
+        .input-group label { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; color: #999; pointer-events: none; transition: all 0.3s ease; background: #fff; padding: 0 6px; }
+        .input-group input:focus + label, .input-group input:valid + label { top: -8px; font-size: 11px; color: #b8860b; }
+        .login-btn { width: 100%; padding: 15px; border-radius: 50px; border: none; background: linear-gradient(135deg, #FFD700, #FFC107); color: #333; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 10px; box-shadow: 0 15px 30px rgba(255, 215, 0, 0.35); transition: all 0.3s ease; }
+        #errorBox { margin-top: 12px; color: #b08d2c; font-size: 13px; text-align: center; display: none; }
+        .hidden { display: none; }
+        .otp-wrapper { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+        .otp-input { width: 100%; max-width: 60px; height: 60px; border-radius: 16px; border: 1px solid #ddd; text-align: center; font-size: 22px; font-weight: 800; outline: none; background: rgba(255,255,255,.9); transition: all .25s ease; }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="bg-glow bg-glow-1"></div>
+        <div class="bg-glow bg-glow-2"></div>
+        <div class="login-card">
+            <h2 class="login-title">خوش آمدید</h2>
+            <p class="login-sub" id="statusText">ایمیل خود را برای ورود وارد کنید</p>
+
+            <form id="loginForm">
+                @Html.AntiForgeryToken()
+                
+                <div id="emailGroup">
+                    <div class="input-group">
+                        <input type="email" asp-for="Command.Email" id="emailInput" required />
+                        <label>ایمیل شما</label>
+                    </div>
+                </div>
+
+                <div id="otpSection" class="hidden">
+                    <div class="otp-wrapper" dir="ltr">
+                        <input type="text" maxlength="1" class="otp-input" />
+                        <input type="text" maxlength="1" class="otp-input" />
+                        <input type="text" maxlength="1" class="otp-input" />
+                        <input type="text" maxlength="1" class="otp-input" />                        
+                    </div>
+                    <input type="hidden" id="finalCode" asp-for="VerifyCommand.Code" />
+                    <input type="hidden" asp-for="VerifyCommand.Email" id="hiddenEmail" />
+                    <div>
+                        <small>کد نیومد؟ <a class="text-muted" asp-page="./Login">اصلاح ایمیل و ارسال مجدد </a></small>
+                    </div>
+                </div>
+
+                <div id="errorBox"></div>
+                <button type="submit" id="submitBtn" class="login-btn">دریافت کد تایید</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let step = 1;
+        const otpInputs = document.querySelectorAll('.otp-input');
+
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value.length > 1) e.target.value = e.target.value.slice(0, 1);
+                if (e.target.value && otpInputs[index + 1]) otpInputs[index + 1].focus();
+                combineOtp();
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && otpInputs[index - 1]) otpInputs[index - 1].focus();
+            });
+        });
+
+        function combineOtp() {
+            let code = "";
+            otpInputs.forEach(input => code += input.value);
+            $('#finalCode').val(code);
+        }
+
+        $('#loginForm').on('submit', function (e) {
+            e.preventDefault();
+            const btn = $('#submitBtn');
+            const errorBox = $('#errorBox');
+            errorBox.hide().text("");
+
+            if (step === 1) {
+                btn.text('درحال ارسال...').prop('disabled', true);
+                $.post('?handler=SendCode', $(this).serialize())
+                .done(function (res) {
+                    const success = res.isSucceeded || res.IsSucceeded || res.isSuccessed || res.IsSuccessed;
+                    if (success) {
+                        $('#emailGroup').fadeOut(300, function() {
+                            $(this).addClass('hidden');
+                            $('#otpSection').removeClass('hidden').fadeIn();
+                            $('#hiddenEmail').val($('#emailInput').val());
+                            $('#statusText').text('کد ارسال شده را وارد کنید');
+                            btn.text('تأیید و ورود').prop('disabled', false);
+                            otpInputs[0].focus();
+                            step = 2;
+                        });
+                    } else {
+                        errorBox.fadeIn().text(res.message || "خطایی رخ داد");
+                        btn.text('دریافت کد تایید').prop('disabled', false);
+                    }
+                });
+            } else {
+                if($('#finalCode').val().length < 4) {
+                    errorBox.fadeIn().text("کد را کامل وارد کنید");
+                    return;
+                }
+                btn.text('درحال بررسی...').prop('disabled', true);
+                $.post('?handler=VerifyCode', $(this).serialize())
+                .done(function (res) {
+                    const success = res.isSucceeded || res.IsSucceeded || res.isSuccessed || res.IsSuccessed;
+                    if (success) {
+                        btn.text('خوش آمدید!');
+                        window.location.href = '/Index';
+                    } else {
+                        errorBox.fadeIn().text(res.message || "کد اشتباه است");
+                        btn.text('تأیید و ورود').prop('disabled', false);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

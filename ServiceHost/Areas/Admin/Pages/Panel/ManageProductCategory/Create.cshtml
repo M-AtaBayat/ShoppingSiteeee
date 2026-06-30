@@ -1,0 +1,91 @@
+﻿@page
+@model ServiceHost.Areas.Admin.Pages.Panel.ManageProductCategory.CreateModel
+@{
+    ViewData["Title"] = "افزودن دسته بندی جدید";
+}
+<div class="pagetitle">
+    <h1 class="mb-3">افزودن دسته بندی جدید</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="Admin" asp-page="/Index">صفحۀ اصلی</a></li>
+            <li class="breadcrumb-item active">افزودن دسته بندی محصولات</li>
+        </ol>
+    </nav>
+</div>
+<style>
+    /* استایل جذاب دکمه */
+    #save:disabled {
+        background: linear-gradient(135deg, #a5b4fc, #818cf8) !important;
+        opacity: 0.7;
+        cursor: not-allowed;
+        transition: all 0.3s ease;
+    }
+
+    #save:enabled {
+        background: linear-gradient(135deg, #60a5fa, #3b82f6) !important;
+        box-shadow: 0 4px 12px rgba(96, 165, 250, 0.4);
+        transition: all 0.3s ease;
+    }
+
+    #save:hover:enabled {
+        transform: scale(1.02);
+        box-shadow: 0 6px 16px rgba(96, 165, 250, 0.6);
+    }
+</style>
+<section class="section">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+
+                    @if (!ModelState.IsValid || ModelState.ErrorCount > 0)
+                    {
+                        <div class="alert alert-danger mt-3" asp-validation-summary="ModelOnly"></div>
+                    }
+
+                    <form class="row g-3 mt-1" method="post">
+                        <div class="col-md-6">
+                            <label class="form-label" asp-for="Command.Name">نام</label>
+                            <input type="text" class="form-control" asp-for="Command.Name">
+                            <span class="text-danger" asp-validation-for="Command.Name"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" asp-for="Command.Category">نام پشت صحنه</label>
+                            <input type="text" class="form-control" asp-for="Command.Category">
+                            <span class="text-danger" asp-validation-for="Command.Category"></span>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" id="save" class="btn btn-primary" disabled>ایجاد</button>
+                            <a asp-page="./List" class="btn btn-dark">انصراف</a>
+                        </div>
+                    </form>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const inputs = document.querySelectorAll('.form-control');
+                            const submitBtn = document.getElementById('save');
+
+                            function checkFormValidity() {
+                                let allFilled = true;
+
+                                inputs.forEach(input => {
+                                    if (input.type === 'text' && input.value.trim() === '') {
+                                        allFilled = false;
+                                    }
+                                });
+
+                                submitBtn.disabled = !allFilled;
+                            }
+
+                            inputs.forEach(input => {
+                                input.addEventListener('input', checkFormValidity);
+                            });
+
+                            checkFormValidity();
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

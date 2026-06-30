@@ -1,0 +1,177 @@
+﻿@page
+@model ServiceHost.Pages.PaymentTransactionModel
+@{
+    ViewData["Title"] = "نهایی‌سازی سفارش";
+}
+
+<div class="alert alert-info text-center">
+    زمان باقی‌مانده برای تکمیل سفارش: <span id="timer" class="font-weight-bold">10:00</span>
+</div>
+
+<form method="post" asp-page-handler="Cancel">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-outline-secondary m-3">
+        <i class="bi bi-arrow-right"></i> انصراف و ویرایش سبد خرید
+    </button>
+</form>
+
+<main style="padding-bottom: 150px !important; padding: 30px; ">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="">
+                <div class="checkout-card text-right">
+                    <div class="checkout-title">نهایی‌سازی سفارش</div>
+
+                    <form id="checkoutForm" method="post" novalidate>
+                        @Html.AntiForgeryToken()
+                        <div class="row g-3">
+
+                            <div class="col-md-6 my-2">
+                                <label class="form-label">نام گیرنده</label>
+                                <div class="icon-input">
+                                    <input type="text" asp-for="CheckoutInfo.Name" class="form-control" id="name">
+                                </div>
+                                <div class="error-text" style="display:none; color:red; font-size:0.85rem;">نام گیرنده الزامی است</div>
+                            </div>
+
+                            <div class="col-md-6 my-2">
+                                <label class="form-label">شماره تماس</label>
+                                <div class="icon-input">
+                                    <input type="text" asp-for="CheckoutInfo.Phone" class="form-control" id="phone" maxlength="11"
+                                           dir="ltr" placeholder="09 - - - - - - - - - (انگلیسی)">
+                                </div>
+                                <div class="error-text" style="display:none; color:red; font-size:0.85rem;">شماره موبایل معتبر نیست</div>
+                            </div>
+
+                            <div class="col-md-4 my-2">
+                                <label class="form-label">استان</label>
+                                <input type="text" asp-for="CheckoutInfo.Province" class="form-control" id="province">
+                                <div class="error-text" style="display:none; color:red; font-size:0.85rem;">استان را وارد کنید</div>
+                            </div>
+
+                            <div class="col-md-4 my-2">
+                                <label class="form-label">شهرستان</label>
+                                <input type="text" asp-for="CheckoutInfo.City" class="form-control" id="city">
+                                <div class="error-text" style="display:none; color:red; font-size:0.85rem;">شهرستان را وارد کنید</div>
+                            </div>
+
+                            <div class="col-md-4 my-2">
+                                <label class="form-label">کد پستی</label>
+                                <input type="text" asp-for="CheckoutInfo.Postal" class="form-control" id="postal" maxlength="10" placeholder="- - - - - - - - - - (انگلیسی)" dir="ltr">
+                                <div class="error-text" style="display:none; color:red; font-size:0.85rem;">کد پستی باید ۱۰ رقم باشد</div>
+                            </div>
+
+                            <div class="col-12 my-2">
+                                <label class="form-label">آدرس کامل</label>
+                                <textarea asp-for="CheckoutInfo.Address" class="form-control" rows="3" id="address" minlength="10"></textarea>
+                                <div class="error-text" style="display:none; color:red; font-size:0.85rem;">آدرس را وارد کنید</div>
+                            </div>
+                        </div>
+                        <div class="summary-box">
+                            <div class="summary-row f-small">
+                                <span>تعداد محصولات</span>
+                                <span>@Model.TotalItemsCount کالا</span>
+                            </div>
+                            <div class="summary-row f-small">
+                                <span>مبلغ محصولات</span>
+                                <span>@Model.CartAmount.ToString("N0") تومان</span>
+                            </div>
+                            <div class="summary-row f-small">
+                                <span>هزینه ارسال</span>
+                                <span>@Model.ShippingCost.ToString("N0") تومان</span>
+                            </div>
+                            <div class="summary-row total" style="font-size: medium;">
+                                <span>مبلغ نهایی</span>
+                                <span>@Model.FinalTotalAmount.ToString("N0") تومان</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="pay-btn text-dark" id="submitBtn" disabled>ثبت سفارش و پرداخت</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    const form = document.getElementById('checkoutForm');
+    const inputs = form.querySelectorAll('.form-control');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function validate() {
+        let formIsValid = true;
+
+        inputs.forEach(input => {
+            const error =
+                input.parentElement.classList.contains('icon-input')
+                    ? input.parentElement.nextElementSibling
+                    : input.nextElementSibling;
+
+            let inputValid = true;
+
+            input.classList.remove('error');
+            if(error) error.style.display = 'none';
+
+            // خالی بودن
+            if (input.value.trim() === '') {
+                inputValid = false;
+            }
+
+            // تلفن
+            if (input.id === 'phone' && !/^09\d{9}$/.test(input.value)) {
+                inputValid = false;
+            }
+
+            // کد پستی (تصحیح شد: فیلد اصلی شما طبق کامنت ۸ تا ۲۰ رقم یا دقیقا ۱۰ رقمه، بر اساس اسکریپت خودت هندل شده)
+            if (
+                input.id === 'postal' &&
+                (input.value.length < 8 || input.value.length > 20)
+            ) {
+                inputValid = false;
+            }
+
+            if (!inputValid) {
+                input.classList.add('error');
+                if(error) error.style.display = 'block';
+                formIsValid = false;
+            }
+        });
+
+        submitBtn.disabled = !formIsValid;
+    }
+
+    inputs.forEach(input => input.addEventListener('input', validate));
+
+    form.addEventListener('submit', e => {
+        if (submitBtn.disabled) {
+            e.preventDefault();
+        }
+    });
+</script>
+
+<script>
+    let timeLeft = 600;
+    const timerElement = document.getElementById('timer');
+
+    const countdown = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        timerElement.innerHTML = `${minutes}:${seconds}`;
+
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            window.location.href = '?handler=Timeout';
+        }
+        timeLeft--;
+    }, 1000);
+</script>
+
+<script>
+    document.getElementById("homepage")?.classList.remove("active");
+    document.getElementById("productspage")?.classList.remove("active");
+    document.getElementById("basketpage")?.classList.add("active");
+    document.getElementById("offerpage")?.classList.remove("active");
+    document.getElementById("profilepage")?.classList.remove("active");
+</script>

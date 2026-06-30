@@ -1,0 +1,161 @@
+﻿@page
+@model ServiceHost.Areas.Admin.Pages.Panel.ManageOrder.SentModel
+@{
+    ViewData["Title"] = "سفارشات ارسال شده";
+}
+
+<div class="pagetitle">
+    <h1>مدیریت سفارشات ارسال شده</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-page="/Index">پنل مدیریت</a></li>
+            <li class="breadcrumb-item active">در حال حمل (ارسالی‌ها)</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">جستجوی پیشرفته (سفارشات در راه)</h5>
+                    <form class="row g-3" method="get">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" asp-for="SearchModel.TrackingCode" placeholder="کد پیگیری سایت...">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" asp-for="SearchModel.PostTrackingCode" placeholder="کد رهگیری پستی...">
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary">جستجو</button>
+                            <a asp-page="./Sent" class="btn btn-secondary">لیست کامل</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-end">لیست ارسالی‌ها</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover text-center align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>کد پیگیری سایت</th>
+                                    <th>کد رهگیری پست</th>
+                                    <th>گیرنده</th>
+                                    <th>مبلغ کل</th>
+                                    <th>تاریخ ارسال</th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Orders)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td class="fw-bold text-primary">@item.TrackingCode</td>
+                                        <td class="text-success fw-bold">@item.PostTrackingCode</td>
+                                        <td>@item.ReceiverName</td>
+                                        <td class="number-cell">@item.FinalAmount.ToString("N0")</td>
+                                        <td>@item.SentDate?.ToString("yyyy/MM/dd")</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-info" onclick='showDetails(@Html.Raw(Json.Serialize(item)))'>
+                                                <i class="bi bi-eye"></i> جزئیات
+                                            </button>
+                                            
+                                            <a asp-page-handler="Deliver" asp-route-id="@item.Id" 
+                                               class="btn btn-sm btn-warning" 
+                                               onclick="return confirm('آیا از تحویل نهایی این مرسوله به مشتری اطمینان دارید؟')">
+                                                <i class="bi bi-check-all"></i> تحویل شد
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="detailsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title">جزئیات سفارش ارسالی</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div id="detailsBody" class="modal-body">
+                </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function showDetails(order) {
+            const body = document.getElementById('detailsBody');
+            
+            // ۱. ساخت جدول اقلام سفارش
+            let itemsTable = `
+                <div class="mt-4">
+                    <h6 class="fw-bold border-bottom pb-2">لیست کالاهای داخل بسته:</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered text-center align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>تصویر</th>
+                                    <th>نام محصول</th>
+                                    <th>تعداد</th>
+                                    <th>قیمت واحد</th>
+                                    <th>جمع کالا</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+
+            if (order.items && order.items.length > 0) {
+                order.items.forEach(item => {
+                    let imgSrc = item.productImage ? '/ProductPictures/' + item.productImage : '/assets/img/default-product.png';
+                    itemsTable += `
+                        <tr>
+                            <td><img src="${imgSrc}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;"></td>
+                            <td class="text-start fw-bold text-primary">${item.productName || '---'}</td>
+                            <td><span class="badge bg-secondary">${item.count}</span></td>
+                            <td>${item.unitPrice.toLocaleString()}</td>
+                            <td class="text-success fw-bold">${item.totalItemPrice.toLocaleString()}</td>
+                        </tr>
+                    `;
+                });
+            } else {
+                itemsTable += `<tr><td colspan="5" class="text-danger">خطا در بارگذاری اقلام!</td></tr>`;
+            }
+
+            itemsTable += `</tbody></table></div></div>`;
+
+            // ۲. ساختار نهایی مدال
+            body.innerHTML = `
+                <div class="row g-3">
+                    <div class="col-md-6"><b>کد پیگیری سایت:</b> <span class="text-primary">${order.trackingCode}</span></div>
+                    <div class="col-md-6 text-success"><b>کد رهگیری پست:</b> ${order.postTrackingCode || 'ثبت نشده'}</div>
+                    <hr class="my-2">
+                    <div class="col-md-6"><b>نام گیرنده:</b> ${order.receiverName}</div>
+                    <div class="col-md-6"><b>شماره تماس:</b> ${order.receiverPhoneNumber}</div>
+                    <div class="col-md-12"><b>مقصد:</b> ${order.province}، ${order.city}، ${order.address}</div>
+                    <div class="col-md-6"><b>کد پستی:</b> ${order.postalCode}</div>
+                    <hr class="my-2">
+                    <div class="col-md-6"><b>مبلغ پرداخت شده:</b> <span class="fw-bold">${order.finalAmount.toLocaleString()} تومان</span></div>
+                    <div class="col-md-6"><b>تاریخ خروج از انبار:</b> ${order.sentDate ? new Date(order.sentDate).toLocaleDateString('fa-IR') : '---'}</div>
+                </div>
+                ${itemsTable}
+            `;
+            
+            new bootstrap.Modal(document.getElementById('detailsModal')).show();
+        }
+    </script>
+}

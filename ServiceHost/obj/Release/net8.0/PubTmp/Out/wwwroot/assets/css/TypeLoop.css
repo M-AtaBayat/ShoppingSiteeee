@@ -1,0 +1,19 @@
+
+.cursor {
+    color: #ffbb00;
+    display: inline-block;
+    margin-right: 2px;
+    animation: blink 1s infinite;
+    transition: .5s;
+}
+
+@keyframes blink {
+
+    0%, 50% {
+        opacity: 1;
+    }
+
+    51%, 100% {
+        opacity: 0;
+    }
+}

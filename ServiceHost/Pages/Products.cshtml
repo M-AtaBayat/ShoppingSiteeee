@@ -1,0 +1,229 @@
+﻿@page
+@model ServiceHost.Pages.ProductsModel
+@{
+    ViewData["Title"] = "محصولات پارسو شاپ";
+}
+
+<main style="padding-top: 100px; padding-bottom: 150px;">
+    <!-- SearchBar -->
+    <div class="search-container top-search-dock shadow-lg">
+        <input id="searchInput" type="text" class="search-input" placeholder="جستجو در محصولات...">
+        <button class="search-btn ripple-btn-search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Product Categories -->
+    <div class="container py-0">
+        <section class="mini-categories category-filters py-0 my-0 pl-3">
+            <div class="px-4 pt-3 scroll" style="scrollbar-width: none !important;">
+                <div class="mini-categories-wrap pb-3 ">
+
+                    <button class="mini-cat active" data-filter="all">
+                        <i class="bi bi-grid"></i>
+                        <span>همه</span>
+                    </button>
+                    <button class="mini-cat discount" data-filter="discount">
+                        <i class="bi bi-percent"></i>
+                        <span>تخفیف‌دار</span>
+                    </button>
+
+                    <button class="mini-cat popular" data-filter="popular">
+                        <i class="bi bi-star-fill"></i>
+                        <span>محبوب</span>
+                    </button>
+                    @foreach (var cat in Model.Categories)
+                    {
+                        <button class="mini-cat" data-filter="@cat.Slug">
+                            <!-- <i class="bi bi-bag"></i> -->
+                            <span>@cat.Name</span>
+                        </button>
+                    }
+
+
+                    @*   <button class="mini-cat" data-filter="shoes">
+                    <!-- <i class="bi bi-basket"></i> -->
+                    <span>کفش</span>
+                </button> *@
+
+
+                </div>
+            </div>
+        </section>
+    </div>
+    
+
+    <div class="container pt-0">
+        <div class="row">
+            @foreach (var product in Model.Products)
+            {
+                var filterClasses = product.Category;
+                if (product.HasDiscount) filterClasses += " discounted";
+                if (product.IsPopular) filterClasses += " popular";
+
+                if (product.IsPopular)
+                {
+                    <div class="col-6 col-md-4 col-lg-3 text-center  py-3 product-item" data-category="@filterClasses" data-name="@product.Name">
+                        <div class="product-card popular w-100">
+                            <div class="product-img">
+                                <img src="/@product.Picture" alt="@product.Slug">
+                                <span class="favorite-badge">محبوب</span>
+                            </div>
+                            <h4 class="product-name">@product.Name</h4>
+                            <div class="product-actions row justify-content-around mb-1">
+                                <span class="color-box shadow-sm"
+                                      style="background:@product.Color; border: 1px solid #ddd;width:15px; height:15px;"></span>
+                                <span class="text-muted">@product.Size</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="price" style="font-size: .9rem;">@product.Price.ToString("N0") تومان</span>
+                            </div>
+                            <div class="product-actions">
+                                <style>
+                                    .product-card {
+                                        padding-bottom: 15px !important;
+                                        height: fit-content;
+                                    }
+                                </style>
+                                <a asp-page="/ProductDetail" asp-route-slug="@product.Slug" class="mr-0 details-btn ripple-btn">جزئیات</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                if (product.HasDiscount)
+                {
+                    <div class="col-6 col-md-4 col-lg-3 text-center  product-item py-3" data-category="@filterClasses" data-name="@product.Name">
+                        <div class="product-card popular w-100">
+                            <div class="product-img">
+                                <span class="discount-badge">@product.DiscountRate% تخفیف</span>
+                                <img src="/@product.Picture" alt="@product.Slug">
+                            </div>
+                            <h4 class="product-name">@product.Name</h4>
+                            <div class="product-actions row justify-content-around mb-1">
+                                <span class="color-box shadow-sm"
+                                      style="background:@product.Color; border: 1px solid #ddd;width:15px; height:15px;"></span>
+                                <span class="text-muted">@product.Size</span>
+                            </div>
+                            <div class="product-price">
+                                <span class="new-price" style="font-size: .9rem;">@product.PriceWithDiscount تومان</span>
+                            </div>
+                            <div class="product-actions">
+                                <style>
+                                    .product-card {
+                                        padding-bottom: 15px !important;
+                                        height: fit-content;
+                                    }
+                                </style>
+                                <a asp-page="/ProductDetail" asp-route-slug="@product.Slug" class="mr-0 details-btn ripple-btn">جزئیات</a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                if (product.HasDiscount == false && product.IsPopular == false)
+                {
+                    <div class="col-6 col-md-4 col-lg-3 text-center  product-item py-3" data-category="@filterClasses" data-name="@product.Name">
+                        <div class="product-card popular w-100">
+                            <div class="product-img">
+                                <img src="/@product.Picture" alt="@product.Slug">
+                            </div>
+                            <h4 class="product-name">@product.Name</h4>
+                            <div class="product-actions row justify-content-around mb-1">
+                                <span class="color-box shadow-sm"
+                                      style="background:@product.Color; border: 1px solid #ddd;width:15px; height:15px;"></span>
+                                <span class="text-muted">@product.Size</span>
+                            </div>
+                            <div class="product-price">
+                                <span style="font-size: .9rem;" class="price">@product.Price.ToString("N0") تومان</span>
+                            </div>
+                            <div class="product-actions">
+                                <style>
+                                    .product-card {
+                                        padding-bottom: 15px !important;
+                                        height: fit-content;
+                                    }
+                                </style>
+                                <a asp-page="/ProductDetail" asp-route-slug="@product.Slug" class="mr-0 details-btn ripple-btn">جزئیات</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterBtns = document.querySelectorAll('.mini-cat');
+            const products = document.querySelectorAll('.product-item');
+            const searchInput = document.getElementById('searchInput');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    applyFilters();
+                });
+            });
+
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    applyFilters();
+                });
+            }
+
+                    function applyFilters() {
+            const activeBtn = document.querySelector('.mini-cat.active');
+            const filter = activeBtn ? activeBtn.dataset.filter : 'all';
+            const searchTerm = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+            products.forEach(card => {
+                const categoryData = card.dataset.category || '';
+                const nameData = card.dataset.name ? card.dataset.name.toLowerCase() : '';
+
+                const matchesCategory = (filter === 'all') || categoryData.includes(filter);
+
+                const matchesSearch = nameData.includes(searchTerm);
+
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+            document.getElementById("homepage")?.classList.remove("active");
+            document.getElementById("productspage")?.classList.add("active");
+            document.getElementById("basketpage")?.classList.remove("active");
+            document.getElementById("offerpage")?.classList.remove("active");
+            document.getElementById("profilepage")?.classList.remove("active");
+        });
+    </script>
+
+    <style>
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</main>
+
+

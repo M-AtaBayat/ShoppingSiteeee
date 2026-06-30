@@ -1,0 +1,112 @@
+﻿@page
+@model ServiceHost.Pages.OrderTrackingModel
+@{
+    ViewData["Title"] = "پیگیری سفارش";
+}
+
+<main class="p-5">
+    <div class="text-right">
+        <a asp-page="/Profile" class="text-dark card-btn mb-3">بازگشت</a>
+    </div>
+    <div class="row justify-content-center">
+        <div class="track-card text-right">
+            <div class="track-title">پیگیری سفارش</div>
+
+            @if (Model.SuccessMessage != null)
+            {
+                <div class="alert alert-success">@Model.SuccessMessage</div>
+            }
+            @if (Model.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">@Model.ErrorMessage</div>
+            }
+            @if (Model.WarningMessage != null)
+            {
+                <div class="alert alert-warning">@Model.WarningMessage</div>
+            }
+
+            <form id="trackForm" method="post" novalidate>
+                <div class="mb-3">
+                    <label class="form-label">شماره تماس</label>
+                    <input type="text" asp-for="Command.PhoneNumber" class="form-control" id="phone" maxlength="11" placeholder="09 - - - - - - - - - (انگلیسی)" dir="ltr">
+                    <div class="error-text" style="display:none; color:red; font-size:0.85rem;">شماره موبایل معتبر نیست (با 09 شروع شود و 11 رقم باشد)</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">کد پیگیری سفارش</label>
+                    <input type="text" asp-for="Command.TrackingCode" class="form-control" id="trackingCode">
+                    <div class="error-text" style="display:none; color:red; font-size:0.85rem;">کد پیگیری الزامی است</div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">متن پیام</label>
+                    <textarea asp-for="Command.Message" class="form-control" id="message" rows="4"></textarea>
+                    <div class="error-text" style="display:none; color:red; font-size:0.85rem;">پیام باید حداقل 10 کاراکتر باشد</div>
+                </div>
+
+                <button type="submit" class="send-btn" id="submitBtn">ارسال درخواست</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script>
+    const form = document.getElementById('trackForm');
+    const phoneInput = document.getElementById('phone');
+    const codeInput = document.getElementById('trackingCode');
+    const messageInput = document.getElementById('message');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function validateForm() {
+        let valid = true;
+
+        const phoneError = phoneInput.nextElementSibling;
+        if (!/^09\d{9}$/.test(phoneInput.value)) {
+            phoneInput.style.borderColor = 'red';
+            phoneError.style.display = 'block';
+            valid = false;
+        } else {
+            phoneInput.style.borderColor = '#ced4da';
+            phoneError.style.display = 'none';
+        }
+
+        const codeError = codeInput.nextElementSibling;
+        if (codeInput.value.trim() === '') {
+            codeInput.style.borderColor = 'red';
+            codeError.style.display = 'block';
+            valid = false;
+        } else {
+            codeInput.style.borderColor = '#ced4da';
+            codeError.style.display = 'none';
+        }
+
+        const msgError = messageInput.nextElementSibling;
+        if (messageInput.value.trim().length < 10) {
+            messageInput.style.borderColor = 'red';
+            msgError.style.display = 'block';
+            valid = false;
+        } else {
+            messageInput.style.borderColor = '#ced4da';
+            msgError.style.display = 'none';
+        }
+
+        return valid;
+    }
+    phoneInput.addEventListener('input', validateForm);
+    codeInput.addEventListener('input', validateForm);
+    messageInput.addEventListener('input', validateForm);
+
+    form.addEventListener('submit', function (e) {
+        if (!validateForm()) {
+            e.preventDefault();
+        }
+    });
+</script>
+
+<script>
+    document.getElementById("homepage")?.classList.remove("active");
+    document.getElementById("productspage")?.classList.remove("active");
+    document.getElementById("basketpage")?.classList.remove("active");
+    document.getElementById("offerpage")?.classList.remove("active");
+    document.getElementById("profilepage")?.classList.add("active");
+</script>

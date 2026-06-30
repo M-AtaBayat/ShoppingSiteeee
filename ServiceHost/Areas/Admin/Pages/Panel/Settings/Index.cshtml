@@ -1,0 +1,73 @@
+﻿@page
+@model ServiceHost.Areas.Admin.Pages.Panel.Settings.IndexModel
+@{
+    ViewData["Title"] = "تنظیمات سایت";
+}
+
+<div class="pagetitle">
+    <h1>تنظیمات عمومی سایت</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-page="/Index">پنل مدیریت</a></li>
+            <li class="breadcrumb-item active">تنظیمات هزینه ارسال</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">ویرایش هزینه ارسال</h5>
+                    <p class="text-muted small">این مبلغ در مرحله نهایی خرید به فاکتور مشتری اضافه خواهد شد.</p>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="Command.Id" />
+                        <input type="hidden" asp-for="Command.AdminEmail" />
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">هزینه ارسال کنونی (تومان):</label>
+                            <div class="input-group">
+                                <input type="number" step="1000" asp-for="Command.ShippingCost" class="form-control form-control-lg text-center fw-bold text-primary" placeholder="مثلاً 50000">
+                                <span class="input-group-text">تومان</span>
+                            </div>
+                            <span asp-validation-for="Command.ShippingCost" class="text-danger small"></span>
+                        </div>
+
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-success px-5">
+                                <i class="bi bi-check-circle"></i> ذخیره تغییرات
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card info-card sales-card">
+                <div class="card-body">
+                    <h5 class="card-title">راهنما <span>| هزینه ارسال</span></h5>
+                    <div class="d-flex align-items-center">
+                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center bg-light text-primary">
+                            <i class="bi bi-truck"></i>
+                        </div>
+                        <div class="pe-3">
+                            <h6>@Model.CurrentSettings.ShippingCost.ToString("N0") تومان</h6>
+                            <span class="text-muted small pt-2">مبلغ فعلی ست شده در سیستم</span>
+                        </div>
+                    </div>
+                    <div class="alert alert-warning mt-4 p-2 small">
+                        <i class="bi bi-exclamation-triangle me-1"></i>
+                        توجه: تغییر این مبلغ بلافاصله روی تمام سبد خریدهای جدید اعمال خواهد شد.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

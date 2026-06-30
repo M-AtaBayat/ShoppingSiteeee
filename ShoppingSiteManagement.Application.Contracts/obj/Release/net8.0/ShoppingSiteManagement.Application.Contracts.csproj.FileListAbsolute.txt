@@ -1,0 +1,16 @@
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\bin\Release\net8.0\ShoppingSiteManagement.Application.Contracts.deps.json
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\bin\Release\net8.0\ShoppingSiteManagement.Application.Contracts.dll
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\bin\Release\net8.0\ShoppingSiteManagement.Application.Contracts.pdb
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\bin\Release\net8.0\0_Framework.dll
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\bin\Release\net8.0\0_Framework.pdb
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\ShoppingSiteManagement.Application.Contracts.csproj.AssemblyReference.cache
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\ShoppingSiteManagement.Application.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\ShoppingSiteManagement.Application.Contracts.AssemblyInfoInputs.cache
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\ShoppingSiteManagement.Application.Contracts.AssemblyInfo.cs
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\ShoppingSiteManagement.Application.Contracts.csproj.CoreCompileInputs.cache
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\ShoppingSiteManagement.Application.Contracts.sourcelink.json
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\Shopping.FE37AD9C.Up2Date
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\ShoppingSiteManagement.Application.Contracts.dll
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\refint\ShoppingSiteManagement.Application.Contracts.dll
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\ShoppingSiteManagement.Application.Contracts.pdb
+D:\Project\Backend\ShoppingSite\ShoppingSiteManagement.Application.Contracts\obj\Release\net8.0\ref\ShoppingSiteManagement.Application.Contracts.dll
