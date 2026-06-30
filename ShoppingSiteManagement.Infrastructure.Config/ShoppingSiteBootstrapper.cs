@@ -1,5 +1,4 @@
-﻿
-using _0_Framework.Application;
+﻿using _0_Framework.Application;
 using _01_ShoppingSiteQuery.Contracts.ProductCategory;
 using _01_ShoppingSiteQuery.Queries;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +46,7 @@ namespace ShoppingSiteManagement.Infrastructure.Config
             services.AddTransient<IProductCategoryApplication, ProductCategoryApplication>();
             services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
+
             // Order
             services.AddTransient<IOrderApplication, OrderApplication>();
             services.AddTransient<IOrderRepository, OrderRepository>();
@@ -59,7 +59,7 @@ namespace ShoppingSiteManagement.Infrastructure.Config
             services.AddTransient<IAccountApplication, AccountApplication>();
             services.AddTransient<IAccountRepository, AccountRepository>();
 
-            // Cart
+            // Cart — اضافه شد: ShoppingSiteContext پارامتر چهارم
             services.AddTransient<ICartApplication, CartApplication>();
             services.AddTransient<ICartRepository, CartRepository>();
 
@@ -69,7 +69,15 @@ namespace ShoppingSiteManagement.Infrastructure.Config
 
             services.AddTransient<FileUploader>();
             services.AddDbContext<ShoppingSiteContext>(x => x.UseSqlServer(con));
-            services.AddTransient<ShoppingSiteContext>(); // ✅ اضافه کن این
+            //services.AddScoped(sp => sp.GetRequiredService<ShoppingSiteContext>());
+            services.AddTransient<ICartApplication>(sp =>
+    new CartApplication(
+        sp.GetRequiredService<ICartRepository>(),
+        sp.GetRequiredService<IProductRepository>(),
+        sp.GetRequiredService<IOrderApplication>(),
+        sp.GetRequiredService<ShoppingSiteContext>()
+    )
+);
 
         }
     }

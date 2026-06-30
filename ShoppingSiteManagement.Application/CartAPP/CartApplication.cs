@@ -110,7 +110,6 @@ namespace ShoppingSiteManagement.Application.CartAPP
             }
             return operation.Success();
         }
-
         public OperationResult Checkout(string accountEmail)
         {
             var operation = new OperationResult();
@@ -119,11 +118,10 @@ namespace ShoppingSiteManagement.Application.CartAPP
             if (cart == null || !cart.Items.Any())
                 return operation.Failed("سبد خرید شما خالی است.");
 
-            // شروع تراکنش
             using var transaction = _dbContext.Database.BeginTransaction();
             try
             {
-                // 1) خواندن و بررسی موجودی همه محصولات به‌صورت یک‌جا
+                // 1) خواندن و بررسی موجودی
                 var items = cart.Items.ToList();
                 var productIds = items.Select(i => i.ProductId).Distinct().ToList();
                 var products = productIds.Select(id => _productRepository.Get(id)).ToList();
@@ -134,31 +132,37 @@ namespace ShoppingSiteManagement.Application.CartAPP
                     if (product == null)
                     {
                         transaction.Rollback();
-                        return operation.Failed($"محصول مورد نظر یافت نشد (Id = {item.ProductId}).");
+                        return operation.Failed($"محصول یافت نشد (Id = {item.ProductId})");
                     }
 
                     if (product.StockCount < item.Count)
                     {
                         transaction.Rollback();
-                        return operation.Failed($"موجودی انبار برای محصول {product.Name} کافی نیست (درخواستی: {item.Count}, موجود: {product.StockCount}).");
+                        return operation.Failed($"موجودی کافی نیست برای {product.Name} (موجود: {product.StockCount}، درخواستی: {item.Count})");
                     }
                 }
 
-                // 2) کاهش موجودی‌ها (تغییر در entity های track شده)
+                // 2) کاهش موجودی
                 foreach (var item in items)
                 {
                     var product = products.First(p => p.Id == item.ProductId);
-                    product.ReduceStock(item.Count);
-                    // اگر repository شما نیاز به Update صریح دارد، از آن استفاده کن:
-                    // _productRepository.SaveChanges(); // نیازی نیست اگر همه با همان DbContext ذخیره می‌شوند
+                    try
+                    {
+                        product.ReduceStock(item.Count);
+                    }
+                    catch (Exception stockEx)
+                    {
+                        transaction.Rollback();
+                        return operation.Failed($"خطا در کاهش موجودی: {stockEx.Message}");
+                    }
                 }
 
-                // 3) ساخت CreateOrderFromCartDto و درخواست ایجاد سفارش (که SAVE را انجام می‌دهد)
+                // 3) ساخت سفارش
                 var createOrderDto = new CreateOrderFromCartDto
                 {
                     AccountEmail = accountEmail,
                     TotalProductsPrice = cart.TotalAmount,
-                    ShippingCost = 0, // در صورت نیاز منطق محاسبه را اضافه کن
+                    ShippingCost = 0,
                     Items = items.Select(item =>
                     {
                         var product = products.First(p => p.Id == item.ProductId);
@@ -180,20 +184,28 @@ namespace ShoppingSiteManagement.Application.CartAPP
                     return operation.Failed($"خطا در ایجاد سفارش: {createOrderResult.Message}");
                 }
 
-                // 4) تکمیل سبد و ذخیره نهایی
+                // 4) تکمیل سبد
                 cart.Finish();
 
-                // این SaveChanges‌ها باعث persist شدن تغییرات محصولات، سبد و هر چیز دیگری می‌شود.
-                _cartRepository.SaveChanges();
-                // توجه: CreateOrderFromCart خودش save کرد؛ اما چون همه در یک DbContext و تراکنش قرار دارند، همه تغییرات در همان تراکنش نهایی می‌شوند.
+                // 5) ذخیره نهایی
+                try
+                {
+                    _cartRepository.SaveChanges();
+                }
+                catch (Exception saveEx)
+                {
+                    transaction.Rollback();
+                    return operation.Failed($"خطا در ذخیره سفارش در دیتابیس: {saveEx.InnerException?.Message ?? saveEx.Message}");
+                }
 
+                // 6) commit تراکنش
                 transaction.Commit();
                 return operation.Success("سفارش شما با موفقیت ایجاد شد.");
             }
             catch (Exception ex)
             {
                 try { transaction.Rollback(); } catch { }
-                return operation.Failed($"خطا در checkout: {ex.Message}");
+                return operation.Failed($"خطای نامشخص در checkout: {ex.InnerException?.Message ?? ex.Message}");
             }
         }
         public OperationResult ReleaseReservedStock(string accountEmail)
