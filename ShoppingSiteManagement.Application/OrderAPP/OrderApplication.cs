@@ -202,7 +202,7 @@ namespace ShoppingSiteManagement.Application.OrderAPP
 
         public List<OrderViewModel> Search(SearchOrderModel searchModel)
         {
-            var orders = _orderRepository.GetAll();
+            var orders = _orderRepository.GetAllWithItems();
             if (orders == null) return new List<OrderViewModel>();
 
             var query = orders.AsQueryable();
@@ -267,15 +267,21 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                 SentDate = order.SentDate,
                 DeliveredDate = order.DeliveredDate,
 
-                Items = order.Items?.Select(x => new OrderItemViewModel
+                Items = order.Items?.Select(x =>
                 {
-                    Id = x.Id,
-                    ProductId = x.ProductId,
-                    ProductName = x.ProductName,
-                    ProductImage = x.ProductImage,
-                    UnitPrice = x.UnitPrice,
-                    Count = x.Count,
-                    TotalItemPrice = (x.UnitPrice * x.Count)
+                    var product = _productRepository.Get(x.ProductId);
+                    return new OrderItemViewModel
+                    {
+                        Id = x.Id,
+                        ProductId = x.ProductId,
+                        ProductName = x.ProductName,
+                        ProductImage = x.ProductImage,
+                        UnitPrice = x.UnitPrice,
+                        Count = x.Count,
+                        TotalItemPrice = (x.UnitPrice * x.Count),
+                        Color = product?.Color,
+                        Size = product?.Size
+                    };
                 }).ToList()
             };
         }

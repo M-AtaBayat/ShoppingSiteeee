@@ -10,7 +10,7 @@ namespace ShoppingSiteManagement.Domain.OrderAgg
     public class Order : EntityBase<long>
     {
         public string TrackingCode { get; private set; }
-        public string PostTrackingCode { get; private set; }
+        public string? PostTrackingCode { get; private set; }
         public OrderStatus Status { get; private set; }
         public string ReceiverName { get; private set; }
         public string ReceiverPhoneNumber { get; private set; }

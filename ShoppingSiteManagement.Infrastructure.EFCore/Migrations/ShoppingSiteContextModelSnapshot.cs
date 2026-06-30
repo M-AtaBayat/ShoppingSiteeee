@@ -166,7 +166,6 @@ namespace ShoppingSiteManagement.Infrastructure.EFCore.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PostTrackingCode")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 

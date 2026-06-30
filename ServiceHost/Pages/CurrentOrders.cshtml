@@ -3,11 +3,20 @@
 @{
     ViewData["Title"] = "سفارش‌های جاری";
 }
-
+<style>
+    .order-card::before{
+        display: none !important;
+    }
+</style>
 <div class="text-right">
     <a asp-page="/Profile" class="text-dark card-btn m-3">بازگشت</a>
 </div>
-
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success text-center mx-3" style="border-radius:12px;">
+        <i class="bi bi-check-circle"></i> @TempData["SuccessMessage"]
+    </div>
+}
 <main style="padding-bottom: 150px !important; padding: 2rem; padding-top: 0;">
     <div class="container text-right pt-0">
 

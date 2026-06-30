@@ -19,7 +19,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">جستجوی پیشرفته (سفارشات در راه)</h5>
+                    <h5 class="card-title">جستجوی پیشرفته (جستجو با هرکدام فرقی ندارد.)</h5>
                     <form class="row g-3" method="get">
                         <div class="col-md-4">
                             <input type="text" class="form-control" asp-for="SearchModel.TrackingCode" placeholder="کد پیگیری سایت...">
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-4">
                             <button type="submit" class="btn btn-primary">جستجو</button>
-                            <a asp-page="./Sent" class="btn btn-secondary">لیست کامل</a>
+                            <a asp-page="./Sent" class="btn btn-secondary">نمایش همه</a>
                         </div>
                     </form>
                 </div>
@@ -48,7 +48,7 @@
                                     <th>گیرنده</th>
                                     <th>مبلغ کل</th>
                                     <th>تاریخ ارسال</th>
-                                    <th>عملیات</th>
+                                    <th class="alamiat">عملیات</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,13 +63,13 @@
                                         <td>@item.SentDate?.ToString("yyyy/MM/dd")</td>
                                         <td>
                                             <button class="btn btn-sm btn-info" onclick='showDetails(@Html.Raw(Json.Serialize(item)))'>
-                                                <i class="bi bi-eye"></i> جزئیات
+                                                 جزئیات
                                             </button>
                                             
                                             <a asp-page-handler="Deliver" asp-route-id="@item.Id" 
                                                class="btn btn-sm btn-warning" 
                                                onclick="return confirm('آیا از تحویل نهایی این مرسوله به مشتری اطمینان دارید؟')">
-                                                <i class="bi bi-check-all"></i> تحویل شد
+                                                تحویل داده شد
                                             </a>
                                         </td>
                                     </tr>
@@ -84,17 +84,141 @@
 </section>
 
 <div class="modal fade" id="detailsModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-info text-white">
-                <h5 class="modal-title">جزئیات سفارش ارسالی</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content order-details-modal">
+            <div class="modal-header order-details-header">
+                <h5 class="modal-title">
+                    <i class="bi bi-receipt-cutoff"></i> جزئیات کامل سفارش
+                </h5>
+                @* <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button> *@
             </div>
-            <div id="detailsBody" class="modal-body">
-                </div>
+            <div id="detailsBody" class="modal-body order-details-body"></div>
         </div>
     </div>
 </div>
+
+<style>
+    .order-details-modal {
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,.18);
+    }
+
+    .order-details-header {
+        background: linear-gradient(135deg, #4154f1, #2e3ad1);
+        border: none;
+        padding: 1.1rem 1.5rem;
+    }
+
+        .order-details-header .modal-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+    .order-details-body {
+        background: #f8f9fc;
+        padding: 1.5rem;
+    }
+
+    .order-info-card, .order-items-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.1rem 1.3rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,.05);
+        margin-bottom: 1.2rem;
+    }
+
+    .order-items-card {
+        margin-bottom: 0;
+    }
+
+        .order-items-card h6 {
+            color: #012970;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+    .order-info-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 10px;
+        font-size: .92rem;
+        color: #344;
+    }
+
+        .order-info-row i {
+            color: #4154f1;
+            width: 20px;
+            text-align: center;
+        }
+
+        .order-info-row b {
+            color: #012970;
+            margin-left: 4px;
+        }
+
+    .order-item-thumb {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #eee;
+    }
+
+    .badge-color, .badge-size {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: .78rem;
+        font-weight: 600;
+    }
+
+    .badge-color {
+        background: #eef2ff;
+        color: #4154f1;
+    }
+
+    .badge-size {
+        background: #fff4e6;
+        color: #e67e22;
+    }
+
+    .order-total-bar {
+        margin-top: 1.2rem;
+        background: linear-gradient(135deg, #e9fbf0, #d7f7e3);
+        border-radius: 12px;
+        padding: .9rem 1.3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .order-total-bar span:first-child {
+            font-weight: 600;
+            color: #1f9d55;
+        }
+
+        .order-total-bar span:last-child {
+            color: #157a40;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+    th {
+        min-width: 100px;
+    }
+
+    .alamiat {
+        min-width: 250px;
+        justify-content: space-between;
+    }
+</style>
 
 @section Scripts {
     <script>
@@ -121,11 +245,11 @@
 
             if (order.items && order.items.length > 0) {
                 order.items.forEach(item => {
-                    let imgSrc = item.productImage ? '/ProductPictures/' + item.productImage : '/assets/img/default-product.png';
+                    let imgSrc = item.productImage;
                     itemsTable += `
                         <tr>
-                            <td><img src="${imgSrc}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;"></td>
-                            <td class="text-start fw-bold text-primary">${item.productName || '---'}</td>
+                            <td><img src="/${imgSrc}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;"></td>
+                            <td class="fw-bold text-primary">${item.productName || '---'}</td>
                             <td><span class="badge bg-secondary">${item.count}</span></td>
                             <td>${item.unitPrice.toLocaleString()}</td>
                             <td class="text-success fw-bold">${item.totalItemPrice.toLocaleString()}</td>

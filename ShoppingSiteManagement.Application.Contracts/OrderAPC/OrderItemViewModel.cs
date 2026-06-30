@@ -9,5 +9,7 @@
         public double UnitPrice { get; set; }
         public int Count { get; set; }
         public double TotalItemPrice { get; set; }
+        public string Color { get; set; }   // ✅ جدید
+        public string Size { get; set; }    // ✅ جدید
     }
 }

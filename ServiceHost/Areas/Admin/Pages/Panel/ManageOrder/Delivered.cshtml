@@ -43,11 +43,11 @@
                             <thead class="table-dark">
                                 <tr>
                                     <th>#</th>
-                                    <th>کد پیگیری سایت</th>
+                                    <th style="min-width:150px;">کد پیگیری سایت</th>
                                     <th>نام مشتری</th>
-                                    <th>مبلغ نهایی (تومان)</th>
+                                    <th style="min-width:200px;">مبلغ نهایی (تومان)</th>
                                     <th>تاریخ تحویل</th>
-                                    <th>عملیات</th>
+                                    <th class="alamiat">عملیات</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -75,24 +75,144 @@
     </div>
 </section>
 
+
 <div class="modal fade" id="detailsModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content border-0">
-            <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title">خلاصه فاکتور نهایی و اقلام ارسالی</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content order-details-modal">
+            <div class="modal-header order-details-header">
+                <h5 class="modal-title">
+                    <i class="bi bi-receipt-cutoff"></i> جزئیات کامل سفارش
+                </h5>
+                @* <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button> *@
             </div>
-            <div id="detailsBody" class="modal-body shadow-sm">
-            </div>
-            <div class="modal-footer bg-light">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                <button type="button" class="btn btn-primary" onclick="window.print()">
-                    <i class="bi bi-printer"></i> چاپ فاکتور
-                </button>
-            </div>
+            <div id="detailsBody" class="modal-body order-details-body"></div>
         </div>
     </div>
 </div>
+
+<style>
+    .order-details-modal {
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,.18);
+    }
+
+    .order-details-header {
+        background: linear-gradient(135deg, #4154f1, #2e3ad1);
+        border: none;
+        padding: 1.1rem 1.5rem;
+    }
+
+        .order-details-header .modal-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.15rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+    .order-details-body {
+        background: #f8f9fc;
+        padding: 1.5rem;
+    }
+
+    .order-info-card, .order-items-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 1.1rem 1.3rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,.05);
+        margin-bottom: 1.2rem;
+    }
+
+    .order-items-card {
+        margin-bottom: 0;
+    }
+
+        .order-items-card h6 {
+            color: #012970;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+    .order-info-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 10px;
+        font-size: .92rem;
+        color: #344;
+    }
+
+        .order-info-row i {
+            color: #4154f1;
+            width: 20px;
+            text-align: center;
+        }
+
+        .order-info-row b {
+            color: #012970;
+            margin-left: 4px;
+        }
+
+    .order-item-thumb {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #eee;
+    }
+
+    .badge-color, .badge-size {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: .78rem;
+        font-weight: 600;
+    }
+
+    .badge-color {
+        background: #eef2ff;
+        color: #4154f1;
+    }
+
+    .badge-size {
+        background: #fff4e6;
+        color: #e67e22;
+    }
+
+    .order-total-bar {
+        margin-top: 1.2rem;
+        background: linear-gradient(135deg, #e9fbf0, #d7f7e3);
+        border-radius: 12px;
+        padding: .9rem 1.3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+        .order-total-bar span:first-child {
+            font-weight: 600;
+            color: #1f9d55;
+        }
+
+        .order-total-bar span:last-child {
+            color: #157a40;
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+    th {
+        min-width: 100px;
+    }
+
+    .alamiat {
+        min-width: 250px;
+        justify-content: space-between;
+    }
+</style>
+
 
 @section Scripts {
     <script>
@@ -107,7 +227,7 @@
                             <thead class="table-light">
                                 <tr>
                                     <th>تصویر</th>
-                                    <th>نام محصول</th>
+                                    <th style="min-width:150px;">نام محصول</th>
                                     <th>تعداد</th>
                                     <th>قیمت واحد</th>
                                     <th>جمع کالا</th>
@@ -118,11 +238,11 @@
 
             if (order.items && order.items.length > 0) {
                 order.items.forEach(item => {
-                    let imgSrc = item.productImage ? '/ProductPictures/' + item.productImage : '/assets/img/default-product.png';
+                    let imgSrc = item.productImage;
                     itemsTable += `
-                        <tr>
-                            <td><img src="${imgSrc}" style="width: 45px; height: 45px; object-fit: cover; border-radius: 5px;"></td>
-                            <td class="text-start fw-bold text-primary">${item.productName || '---'}</td>
+                        <tr class="">
+                            <td><img src="/${imgSrc}" style="width: 45px; height: 45px; object-fit: cover; border-radius: 5px;"></td>
+                            <td class="text-center fw-bold text-primary">${item.productName || '---'}</td>
                             <td><span class="badge bg-dark">${item.count}</span></td>
                             <td>${item.unitPrice.toLocaleString()}</td>
                             <td class="text-success fw-bold">${item.totalItemPrice.toLocaleString()}</td>
@@ -138,11 +258,11 @@
             body.innerHTML = `
                 <div class="p-2">
                     <div class="row mb-3">
-                        <div class="col-6">
+                        <div class="col-12">
                             <p class="mb-0 text-muted">کد پیگیری سایت:</p>
                             <h5 class="fw-bold">${order.trackingCode}</h5>
                         </div>
-                        <div class="col-6 text-end">
+                        <div class="col-12 text-end">
                             <p class="mb-0 text-muted">کد رهگیری پست:</p>
                             <h5 class="text-success fw-bold">${order.postTrackingCode || '---'}</h5>
                         </div>
@@ -150,8 +270,8 @@
                     <div class="row bg-light p-3 rounded mb-3">
                         <div class="col-md-6 border-end">
                             <h6><b>مشخصات مشتری:</b></h6>
-                            <p class="mb-1">${order.receiverName}</p>
-                            <p class="mb-1 small text-muted">${order.receiverPhoneNumber}</p>
+                            <span class="mb-1">${order.receiverName}</span> - 
+                            <span class="mb-1 small text-muted">${order.receiverPhoneNumber}</span>
                         </div>
                         <div class="col-md-6 ps-md-4">
                             <h6><b>آدرس تحویل:</b></h6>

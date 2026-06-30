@@ -28,6 +28,8 @@ namespace ServiceHost.Pages
         public double CartAmount { get; set; }
         public double ShippingCost { get; set; }
         public double FinalTotalAmount { get; set; }
+        public string ErrorMessage { get; set; }
+
 
         public IActionResult OnGet()
         {
@@ -49,45 +51,73 @@ namespace ServiceHost.Pages
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            // خلاصه سبد رو هر بار که برگردیم به Page() دوباره می‌سازیم
+            // تا صفحه خراب یا با عدد صفر نمایش داده نشه
+            void LoadSummary()
             {
-                OnGet();
+                var c = _cartApplication.GetCart(User.Identity.Name);
+                var s = _settingsApplication.GetSettings();
+                var shipping = s?.ShippingCost ?? 0;
+
+                TotalItemsCount = c?.TotalItems ?? 0;
+                CartAmount = c?.TotalAmount ?? 0;
+                ShippingCost = shipping;
+                FinalTotalAmount = CartAmount + ShippingCost;
+            }
+
+            try
+            {
+                // ✅ Validate کامل
+                if (CheckoutInfo == null ||
+                    string.IsNullOrWhiteSpace(CheckoutInfo.Name) ||
+                    string.IsNullOrWhiteSpace(CheckoutInfo.Phone) ||
+                    string.IsNullOrWhiteSpace(CheckoutInfo.Province) ||
+                    string.IsNullOrWhiteSpace(CheckoutInfo.City) ||
+                    string.IsNullOrWhiteSpace(CheckoutInfo.Postal) ||
+                    string.IsNullOrWhiteSpace(CheckoutInfo.Address))
+                {
+                    ErrorMessage = "لطفاً تمام فیلدها را پر کنید";
+                    LoadSummary();
+                    return Page();
+                }
+
+                var cart = _cartApplication.GetCart(User.Identity.Name);
+                if (cart == null || !cart.Items.Any())
+                {
+                    ErrorMessage = "سبد خرید شما خالی است یا منقضی شده. لطفاً دوباره از سبد خرید اقدام کنید.";
+                    LoadSummary();
+                    return Page();
+                }
+
+                // ✅ هزینه ارسال را از SiteSettings بخون
+                var settings = _settingsApplication.GetSettings();
+                var shippingCost = settings?.ShippingCost ?? 0;
+
+                // ✅ **اینجا** سفارش ایجاد می‌شود + موجودی کاهش می‌یابد
+                var createOrderResult = _orderApplication.CreateOrderWithCheckoutInfo(
+                    User.Identity.Name,
+                    CheckoutInfo,
+                    shippingCost
+                );
+
+                if (!createOrderResult.IsSuccessed)
+                {
+                    ErrorMessage = createOrderResult.Message;
+                    LoadSummary();
+                    return Page();
+                }
+
+                // ✅ سفارش ثبت شد — پیام موفقیت و redirect
+                TempData["SuccessMessage"] = "سفارش شما با موفقیت ثبت شد!";
+                return RedirectToPage("/CurrentOrders");
+            }
+            catch (Exception ex)
+            {
+                ErrorMessage = "خطایی در ثبت سفارش رخ داد. لطفاً دوباره تلاش کنید.";
+                LoadSummary();
                 return Page();
             }
-
-            // ✅ Validate کامل
-            if (string.IsNullOrWhiteSpace(CheckoutInfo?.Name) ||
-                string.IsNullOrWhiteSpace(CheckoutInfo?.Phone) ||
-                string.IsNullOrWhiteSpace(CheckoutInfo?.Province) ||
-                string.IsNullOrWhiteSpace(CheckoutInfo?.City) ||
-                string.IsNullOrWhiteSpace(CheckoutInfo?.Address))
-            {
-                TempData["Error"] = "لطفاً تمام فیلدها را پر کنید";
-                return RedirectToPage();
-            }
-
-            // ✅ هزینه ارسال را از SiteSettings بخون
-            var settings = _settingsApplication.GetSettings();
-            var shippingCost = settings?.ShippingCost ?? 0;
-
-            // ✅ **اینجا** سفارش ایجاد می‌شود + موجودی کاهش می‌یابد
-            var createOrderResult = _orderApplication.CreateOrderWithCheckoutInfo(
-                User.Identity.Name,
-                CheckoutInfo,
-                shippingCost
-            );
-
-            if (!createOrderResult.IsSuccessed)
-            {
-                TempData["Error"] = createOrderResult.Message;
-                return RedirectToPage();
-            }
-
-            // ✅ سفارش ثبت شد — پیام موفقیت و redirect
-            TempData["SuccessMessage"] = "سفارش شما با موفقیت ثبت شد!";
-            return RedirectToPage("/CurrentOrders");
         }
-
         public IActionResult OnPostCancel()
         {
             return RedirectToPage("/Basket");

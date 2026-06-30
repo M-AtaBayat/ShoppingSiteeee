@@ -10,5 +10,7 @@ namespace ShoppingSiteManagement.Domain.OrderAgg
         Order GetByTrackingCode(string trackingCode);
         Order GetByPostTrackingCode(string postTrackingCode);
         Order GetDetails(long id);
-    }
+        List<Order> GetAllWithItems();
+    }    
+
 }

@@ -42,5 +42,12 @@ namespace ShoppingSiteManagement.Infrastructure.EFCore.Repository
                 .Include(x => x.Items)
                 .FirstOrDefault(x => x.PostTrackingCode == postTrackingCode);
         }
+
+        public List<Order> GetAllWithItems()
+        {
+            return _context.Orders
+                .Include(x => x.Items)
+                .ToList();
+        }
     }
 }
