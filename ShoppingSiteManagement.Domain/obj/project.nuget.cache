@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SQhffDG6jes=",
+  "dgSpecHash": "FlctXKSx89A=",
   "success": true,
-  "projectFilePath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
+  "projectFilePath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\irpci-iranian\\.nuget\\packages\\bouncycastle.cryptography\\2.6.2\\bouncycastle.cryptography.2.6.2.nupkg.sha512",
     "C:\\Users\\irpci-iranian\\.nuget\\packages\\mailkit\\4.15.0\\mailkit.4.15.0.nupkg.sha512",
@@ -169,9 +169,9 @@
       "code": "NU1902",
       "level": "Warning",
       "message": "Package 'MailKit' 4.15.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-9j88-vvj5-vhgr",
-      "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
+      "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
+      "filePath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
       "libraryId": "MailKit",
       "targetGraphs": [
         "net8.0"
@@ -181,9 +181,9 @@
       "code": "NU1902",
       "level": "Warning",
       "message": "Package 'MimeKit' 4.15.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-g7hc-96xr-gvvx",
-      "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
+      "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
+      "filePath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
       "libraryId": "MimeKit",
       "targetGraphs": [
         "net8.0"

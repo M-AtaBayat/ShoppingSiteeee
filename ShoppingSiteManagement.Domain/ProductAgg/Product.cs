@@ -97,10 +97,9 @@ namespace ShoppingSiteManagement.Domain.ProductAgg
 
         public void ReduceStock(int count)
         {
-            if (StockCount >= count)
-                StockCount -= count;
-            else
-                throw new Exception("موجودی کافی نیست");
+            if (count <= 0) throw new ArgumentException("تعداد نامعتبر است", nameof(count));
+            if (StockCount < count) throw new InvalidOperationException("موجودی کافی نیست");
+            StockCount -= count;
         }
     }
 }

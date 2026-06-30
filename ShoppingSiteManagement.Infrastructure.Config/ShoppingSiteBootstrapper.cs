@@ -69,6 +69,7 @@ namespace ShoppingSiteManagement.Infrastructure.Config
 
             services.AddTransient<FileUploader>();
             services.AddDbContext<ShoppingSiteContext>(x => x.UseSqlServer(con));
+
         }
     }
 }

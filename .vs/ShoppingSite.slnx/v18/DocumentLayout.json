@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Project\\Backend\\ShoppingSiteeee\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5217DC08-5CA8-4E95-8843-52FD4E9A8C11}|ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj|d:\\project\\backend\\shoppingsiteeee\\shoppingsitemanagement.infrastructure.config\\shoppingsitebootstrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5217DC08-5CA8-4E95-8843-52FD4E9A8C11}|ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj|solutionrelative:shoppingsitemanagement.infrastructure.config\\shoppingsitebootstrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{44786AE6-5F2C-3A17-244F-5C49AC546C7C}|ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj|d:\\project\\backend\\shoppingsiteeee\\shoppingsitemanagement.domain\\productagg\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{44786AE6-5F2C-3A17-244F-5C49AC546C7C}|ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj|solutionrelative:shoppingsitemanagement.domain\\productagg\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D4C4506B-A1B3-FC82-0423-7C8D670AFCF2}|ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj|d:\\project\\backend\\shoppingsiteeee\\shoppingsitemanagement.application\\cartapp\\cartapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D4C4506B-A1B3-FC82-0423-7C8D670AFCF2}|ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj|solutionrelative:shoppingsitemanagement.application\\cartapp\\cartapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ShoppingSiteBootstrapper.cs",
+              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteBootstrapper.cs",
+              "RelativeDocumentMoniker": "ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteBootstrapper.cs",
+              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteBootstrapper.cs",
+              "RelativeToolTip": "ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteBootstrapper.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAgwDkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T15:36:58.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PaymentService.cs",
+              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Services\\PaymentService.cs",
+              "RelativeDocumentMoniker": "ServiceHost\\Services\\PaymentService.cs",
+              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Services\\PaymentService.cs",
+              "RelativeToolTip": "ServiceHost\\Services\\PaymentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T15:36:21.647Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ProductAgg\\Product.cs",
+              "RelativeDocumentMoniker": "ShoppingSiteManagement.Domain\\ProductAgg\\Product.cs",
+              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ProductAgg\\Product.cs",
+              "RelativeToolTip": "ShoppingSiteManagement.Domain\\ProductAgg\\Product.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAIwGYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T15:34:29.207Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CartApplication.cs",
+              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\CartAPP\\CartApplication.cs",
+              "RelativeDocumentMoniker": "ShoppingSiteManagement.Application\\CartAPP\\CartApplication.cs",
+              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\CartAPP\\CartApplication.cs",
+              "RelativeToolTip": "ShoppingSiteManagement.Application\\CartAPP\\CartApplication.cs",
+              "ViewState": "AgIAAH4AAAAATGjDwq0cwJEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T15:30:40.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Program.cs",
+              "RelativeDocumentMoniker": "ServiceHost\\Program.cs",
+              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Program.cs*",
+              "RelativeToolTip": "ServiceHost\\Program.cs*",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAADAAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T15:29:46.175Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -7110,11 +7110,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj",
+      "projectUniqueName": "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj",
       "projectName": "01_ShoppingSiteQuery",
-      "projectPath": "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj",
+      "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj",
       "packagesPath": "C:\\Users\\irpci-iranian\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\obj\\",
+      "outputPath": "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7137,11 +7137,11 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
-              "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
+            "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
+              "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
             },
-            "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
-              "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj"
+            "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
+              "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj"
             }
           }
         }

@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\Backend\\ShoppingSite\\ServiceHost\\ServiceHost.csproj": {}
+    "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\ServiceHost.csproj": {}
   },
   "projects": {
     "D:\\Project\\Backend\\Borujerd-360\\0_Framework\\0_Framework.csproj": {
@@ -102,14 +102,14 @@
         }
       }
     },
-    "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj": {
+    "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj",
+        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj",
         "projectName": "01_ShoppingSiteQuery",
-        "projectPath": "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj",
+        "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj",
         "packagesPath": "C:\\Users\\irpci-iranian\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\obj\\",
+        "outputPath": "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -132,11 +132,11 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj"
               }
             }
           }
@@ -207,14 +207,14 @@
         }
       }
     },
-    "D:\\Project\\Backend\\ShoppingSite\\ServiceHost\\ServiceHost.csproj": {
+    "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\ServiceHost.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSite\\ServiceHost\\ServiceHost.csproj",
+        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\ServiceHost.csproj",
         "projectName": "ServiceHost",
-        "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ServiceHost\\ServiceHost.csproj",
+        "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\ServiceHost.csproj",
         "packagesPath": "C:\\Users\\irpci-iranian\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Backend\\ShoppingSite\\ServiceHost\\obj\\",
+        "outputPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -237,14 +237,14 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj"
               }
             }
           }
@@ -298,14 +298,14 @@
         }
       }
     },
-    "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
+    "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj",
+        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj",
         "projectName": "ShoppingSiteManagement.Application.Contracts",
-        "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj",
+        "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj",
         "packagesPath": "C:\\Users\\irpci-iranian\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\obj\\",
+        "outputPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -380,14 +380,14 @@
         }
       }
     },
-    "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj": {
+    "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj",
+        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj",
         "projectName": "ShoppingSiteManagement.Application",
-        "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj",
+        "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj",
         "packagesPath": "C:\\Users\\irpci-iranian\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application\\obj\\",
+        "outputPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -413,11 +413,14 @@
               "D:\\Project\\Backend\\Borujerd-360\\0_Framework\\0_Framework.csproj": {
                 "projectPath": "D:\\Project\\Backend\\Borujerd-360\\0_Framework\\0_Framework.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
+              },
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj"
               }
             }
           }
@@ -468,14 +471,14 @@
         }
       }
     },
-    "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
+    "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
+        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
         "projectName": "ShoppingSiteManagement.Domain",
-        "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
+        "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
         "packagesPath": "C:\\Users\\irpci-iranian\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\obj\\",
+        "outputPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -501,8 +504,8 @@
               "D:\\Project\\Backend\\Borujerd-360\\0_Framework\\0_Framework.csproj": {
                 "projectPath": "D:\\Project\\Backend\\Borujerd-360\\0_Framework\\0_Framework.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj"
               }
             }
           }
@@ -553,14 +556,14 @@
         }
       }
     },
-    "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj": {
+    "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj",
+        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj",
         "projectName": "ShoppingSiteManagement.Infrastructure.Config",
-        "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj",
+        "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj",
         "packagesPath": "C:\\Users\\irpci-iranian\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.Config\\obj\\",
+        "outputPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -583,20 +586,20 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\01_ShoppingSiteQuery\\01_ShoppingSiteQuery.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
               },
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj"
               }
             }
           }
@@ -651,14 +654,14 @@
         }
       }
     },
-    "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
+    "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj",
+        "projectUniqueName": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj",
         "projectName": "ShoppingSiteManagement.Infrastructure.EFCore",
-        "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj",
+        "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj",
         "packagesPath": "C:\\Users\\irpci-iranian\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Infrastructure.EFCore\\obj\\",
+        "outputPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -681,8 +684,8 @@
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
-                "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
+              "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj": {
+                "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj"
               }
             }
           }

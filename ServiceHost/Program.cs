@@ -27,7 +27,7 @@ using ShoppingSiteManagement.Infrastructure.EFCore;
 using ShoppingSiteManagement.Infrastructure.EFCore.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("ShoppingSiteDb");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 ShoppingSiteBootstrapper.ShoppingSiteConfig(builder.Services, connectionString);
 
@@ -45,8 +45,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         o.ExpireTimeSpan = TimeSpan.FromDays(1);
     });
 
-builder.Services.AddDbContext<ShoppingSiteContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<ShoppingSiteContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 
 builder.Services.AddSession(options => {

@@ -965,7 +965,8 @@
           "MailKit": "4.15.0",
           "MimeKit": "4.15.0",
           "ShoppingSiteManagement.Application.Contracts": "1.0.0",
-          "ShoppingSiteManagement.Domain": "1.0.0"
+          "ShoppingSiteManagement.Domain": "1.0.0",
+          "ShoppingSiteManagement.Infrastructure.EFCore": "1.0.0"
         },
         "runtime": {
           "ShoppingSiteManagement.Application.dll": {

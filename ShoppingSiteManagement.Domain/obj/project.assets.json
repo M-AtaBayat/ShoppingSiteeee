@@ -8114,11 +8114,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
+      "projectUniqueName": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
       "projectName": "ShoppingSiteManagement.Domain",
-      "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
+      "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj",
       "packagesPath": "C:\\Users\\irpci-iranian\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Domain\\obj\\",
+      "outputPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8144,8 +8144,8 @@
             "D:\\Project\\Backend\\Borujerd-360\\0_Framework\\0_Framework.csproj": {
               "projectPath": "D:\\Project\\Backend\\Borujerd-360\\0_Framework\\0_Framework.csproj"
             },
-            "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
-              "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj"
+            "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj": {
+              "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj"
             }
           }
         }

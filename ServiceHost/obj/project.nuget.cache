@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3nGVYW91F/M=",
+  "dgSpecHash": "wwI/FanIApA=",
   "success": true,
-  "projectFilePath": "D:\\Project\\Backend\\ShoppingSite\\ServiceHost\\ServiceHost.csproj",
+  "projectFilePath": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\ServiceHost.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\irpci-iranian\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\irpci-iranian\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
@@ -200,9 +200,9 @@
       "code": "NU1902",
       "level": "Warning",
       "message": "Package 'MailKit' 4.15.0 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-9j88-vvj5-vhgr",
-      "projectPath": "D:\\Project\\Backend\\ShoppingSite\\ServiceHost\\ServiceHost.csproj",
+      "projectPath": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\ServiceHost.csproj",
       "warningLevel": 1,
-      "filePath": "D:\\Project\\Backend\\ShoppingSite\\ServiceHost\\ServiceHost.csproj",
+      "filePath": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\ServiceHost.csproj",
       "libraryId": "MailKit",
       "targetGraphs": [
         "net8.0"
