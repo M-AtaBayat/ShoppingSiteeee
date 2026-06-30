@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ShoppingSiteManagement.Application.Contracts.CartAPC;
 using ShoppingSiteManagement.Application.Contracts.OrderAPC;
+using ShoppingSiteManagement.Application.Contracts.SettingsAPC;
 
 namespace ServiceHost.Pages
 {
@@ -11,11 +12,13 @@ namespace ServiceHost.Pages
     {
         private readonly ICartApplication _cartApplication;
         private readonly IOrderApplication _orderApplication;
+        private readonly ISettingsApplication _settingsApplication;
 
-        public PaymentTransactionModel(ICartApplication cartApplication, IOrderApplication orderApplication)
+        public PaymentTransactionModel(ICartApplication cartApplication, IOrderApplication orderApplication, ISettingsApplication settingsApplication)
         {
             _cartApplication = cartApplication;
             _orderApplication = orderApplication;
+            _settingsApplication = settingsApplication;
         }
 
         [BindProperty]
@@ -28,15 +31,17 @@ namespace ServiceHost.Pages
 
         public IActionResult OnGet()
         {
-            // ✅ فقط سبد رو نمایش بده (سفارش را check نکن)
             var cart = _cartApplication.GetCart(User.Identity.Name);
 
             if (cart == null || !cart.Items.Any())
                 return RedirectToPage("/Basket");
 
+            var settings = _settingsApplication.GetSettings();
+            var shippingCost = settings?.ShippingCost ?? 0;
+
             TotalItemsCount = cart.TotalItems;
             CartAmount = cart.TotalAmount;
-            ShippingCost = 15000; // ✅ هزینه ارسال ثابت (یا از SiteSettings بگیر)
+            ShippingCost = shippingCost;
             FinalTotalAmount = CartAmount + ShippingCost;
 
             return Page();
@@ -50,7 +55,7 @@ namespace ServiceHost.Pages
                 return Page();
             }
 
-            // ✅ CheckoutInfo.Name رو validate کن
+            // ✅ Validate کامل
             if (string.IsNullOrWhiteSpace(CheckoutInfo?.Name) ||
                 string.IsNullOrWhiteSpace(CheckoutInfo?.Phone) ||
                 string.IsNullOrWhiteSpace(CheckoutInfo?.Province) ||
@@ -61,11 +66,15 @@ namespace ServiceHost.Pages
                 return RedirectToPage();
             }
 
-            // ✅ **اینجا** درست می‌شود: سفارش ایجاد می‌شود + موجودی کاهش می‌یابد
+            // ✅ هزینه ارسال را از SiteSettings بخون
+            var settings = _settingsApplication.GetSettings();
+            var shippingCost = settings?.ShippingCost ?? 0;
+
+            // ✅ **اینجا** سفارش ایجاد می‌شود + موجودی کاهش می‌یابد
             var createOrderResult = _orderApplication.CreateOrderWithCheckoutInfo(
                 User.Identity.Name,
                 CheckoutInfo,
-                15000 // شحنه ارسال
+                shippingCost
             );
 
             if (!createOrderResult.IsSuccessed)
@@ -74,14 +83,13 @@ namespace ServiceHost.Pages
                 return RedirectToPage();
             }
 
-            // ✅ سفارش ثبت شد
+            // ✅ سفارش ثبت شد — پیام موفقیت و redirect
             TempData["SuccessMessage"] = "سفارش شما با موفقیت ثبت شد!";
             return RedirectToPage("/CurrentOrders");
         }
 
         public IActionResult OnPostCancel()
         {
-            // ✅ اگر فرم cancel شود، سبد باقی می‌ماند
             return RedirectToPage("/Basket");
         }
     }

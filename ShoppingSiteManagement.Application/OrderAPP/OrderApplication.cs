@@ -36,7 +36,7 @@ namespace ShoppingSiteManagement.Application.OrderAPP
             using var transaction = _dbContext.Database.BeginTransaction();
             try
             {
-                // 1) سبد رو بگیر
+                // 1) سبد را بگیر
                 var cart = _cartRepository.GetActiveCartBy(accountEmail);
                 if (cart == null || !cart.Items.Any())
                 {
@@ -44,7 +44,7 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                     return operation.Failed("سبد خرید خالی است");
                 }
 
-                // 2) موجودی رو check کن
+                // 2) موجودی را چک کن
                 var items = cart.Items.ToList();
                 var productIds = items.Select(i => i.ProductId).Distinct().ToList();
                 var products = productIds.Select(id => _productRepository.Get(id)).ToList();
@@ -65,14 +65,14 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                     }
                 }
 
-                // 3) موجودی رو کاهش بده
+                // 3) موجودی را کاهش بده
                 foreach (var item in items)
                 {
                     var product = products.First(p => p.Id == item.ProductId);
                     product.ReduceStock(item.Count);
                 }
 
-                // 4) سفارش رو ایجاد کن **با مشخصات کاملی**
+                // 4) سفارش را ایجاد کن **با مشخصات کاملی**
                 var trackingCode = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 12);
                 var totalProductsPrice = items.Sum(i => i.UnitPrice * i.Count);
 
@@ -89,7 +89,7 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                     address: checkoutInfo.Address
                 );
 
-                // 5) OrderItems رو اضافه کن
+                // 5) OrderItems را اضافه کن
                 foreach (var item in items)
                 {
                     var product = products.First(p => p.Id == item.ProductId);
@@ -108,11 +108,11 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                 _orderRepository.Add(order);
                 _dbContext.SaveChanges();
 
-                // 7) سبد رو تمام کن
+                // 7) سبد را تمام کن
                 cart.Finish();
                 _cartRepository.SaveChanges();
 
-                // 8) Commit
+                // 8) Commit تراکنش
                 transaction.Commit();
                 return operation.Success($"سفارش شما با کد ردیابی {trackingCode} ثبت شد");
             }
@@ -123,7 +123,6 @@ namespace ShoppingSiteManagement.Application.OrderAPP
             }
         }
 
-        // 🟢 متد قدیمی برای ایجاد سفارش از سبد خریدی
         public OperationResult CreateOrderFromCart(CreateOrderFromCartDto createOrderDto)
         {
             var operation = new OperationResult();

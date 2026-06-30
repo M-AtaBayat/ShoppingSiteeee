@@ -113,21 +113,15 @@
             input.classList.remove('error');
             if(error) error.style.display = 'none';
 
-            // خالی بودن
             if (input.value.trim() === '') {
                 inputValid = false;
             }
 
-            // تلفن
             if (input.id === 'phone' && !/^09\d{9}$/.test(input.value)) {
                 inputValid = false;
             }
 
-            // کد پستی (تصحیح شد: فیلد اصلی شما طبق کامنت ۸ تا ۲۰ رقم یا دقیقا ۱۰ رقمه، بر اساس اسکریپت خودت هندل شده)
-            if (
-                input.id === 'postal' &&
-                (input.value.length < 8 || input.value.length > 20)
-            ) {
+            if (input.id === 'postal' && (input.value.length < 8 || input.value.length > 20)) {
                 inputValid = false;
             }
 
@@ -150,6 +144,7 @@
     });
 </script>
 
+<!-- ✅ آلرت Timeout خوشگل -->
 <script>
     let timeLeft = 600;
     const timerElement = document.getElementById('timer');
@@ -162,10 +157,46 @@
 
         if (timeLeft <= 0) {
             clearInterval(countdown);
-            window.location.href = '?handler=Timeout';
+
+            // ✅ آلرت خوشگل Modal
+            showTimeoutModal();
         }
         timeLeft--;
     }, 1000);
+
+    function showTimeoutModal() {
+        const modalHTML = `
+            <div class="modal fade show" id="timeoutModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content text-right" style="border-radius:15px; border: 2px solid #ff9800;">
+                        <div class="modal-header border-0 pb-0" style="background: linear-gradient(135deg, #ff9800, #f57c00);">
+                            <h5 class="modal-title text-white w-100" style="font-weight: bold; font-size: 1.3rem;">
+                                ⏱ زمان شما تمام شد
+                            </h5>
+                        </div>
+                        <div class="modal-body py-4" style="background-color: #fff9f5;">
+                            <div class="alert alert-warning mt-3 mb-3" style="border-radius: 10px; border: none; background-color: #ffe8cc;">
+                                <i class="bi bi-exclamation-circle"></i>
+                                متأسفانه مهلت ۱۰ دقیقه‌ای شما به پایان رسید و موجودی محصولات به انبار برگشت.
+                            </div>
+                            <p style="color: #666; font-size: 0.95rem;">
+                                اگر می‌خواهید سفارش را ادامه دهید، لطفاً دوباره سبد خرید را بازدید کنید.
+                            </p>
+                        </div>
+                        <div class="modal-footer border-0 pt-0" style="background-color: #fff9f5;">
+                            <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='/Basket'" style="border-radius: 8px; border-width: 2px;">
+                                🛒 بازگشت به سبد خرید
+                            </button>
+                            <button type="button" class="btn btn-warning" onclick="window.location.href='/'" style="border-radius: 8px;">
+                                🏠 بازگشت به صفحه اول
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
 </script>
 
 <script>
