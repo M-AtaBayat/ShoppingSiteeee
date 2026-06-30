@@ -36,7 +36,7 @@ namespace ServiceHost.Pages
 
             TotalItemsCount = cart.TotalItems;
             CartAmount = cart.TotalAmount;
-            ShippingCost = 0; // یا محاسبه بر اساس منطق خودت
+            ShippingCost = 15000; // ✅ هزینه ارسال ثابت (یا از SiteSettings بگیر)
             FinalTotalAmount = CartAmount + ShippingCost;
 
             return Page();
@@ -50,20 +50,32 @@ namespace ServiceHost.Pages
                 return Page();
             }
 
+            // ✅ CheckoutInfo.Name رو validate کن
+            if (string.IsNullOrWhiteSpace(CheckoutInfo?.Name) ||
+                string.IsNullOrWhiteSpace(CheckoutInfo?.Phone) ||
+                string.IsNullOrWhiteSpace(CheckoutInfo?.Province) ||
+                string.IsNullOrWhiteSpace(CheckoutInfo?.City) ||
+                string.IsNullOrWhiteSpace(CheckoutInfo?.Address))
+            {
+                TempData["Error"] = "لطفاً تمام فیلدها را پر کنید";
+                return RedirectToPage();
+            }
+
             // ✅ **اینجا** درست می‌شود: سفارش ایجاد می‌شود + موجودی کاهش می‌یابد
             var createOrderResult = _orderApplication.CreateOrderWithCheckoutInfo(
                 User.Identity.Name,
-                CheckoutInfo
+                CheckoutInfo,
+                15000 // شحنه ارسال
             );
 
             if (!createOrderResult.IsSuccessed)
             {
-                ModelState.AddModelError("", createOrderResult.Message);
-                OnGet();
-                return Page();
+                TempData["Error"] = createOrderResult.Message;
+                return RedirectToPage();
             }
 
-            // ✅ سفارش ثبت شد، سبد تمام شد
+            // ✅ سفارش ثبت شد
+            TempData["SuccessMessage"] = "سفارش شما با موفقیت ثبت شد!";
             return RedirectToPage("/CurrentOrders");
         }
 

@@ -45,6 +45,9 @@ namespace ShoppingSiteManagement.Application.Contracts.OrderAPC
         // 🟢 متد جدید برای ایجاد سفارش از سبد خریدی
         OperationResult CreateOrderFromCart(CreateOrderFromCartDto createOrderDto);
 
+        // 🟢 متد برای ایجاد سفارش با اطلاعات نهایی
+        OperationResult CreateOrderWithCheckoutInfo(string accountEmail, CheckoutDto checkoutInfo, double shippingCost);
+
         OperationResult ConfirmOrder(long id, string postTrackingCode);
         OperationResult DeliverOrder(long id);
         OrderViewModel GetDetails(long id);
@@ -54,6 +57,5 @@ namespace ShoppingSiteManagement.Application.Contracts.OrderAPC
         OrderViewModel GetByPostTrackingCode(string postTrackingCode);
         ActiveOrderDto GetActiveOrderForCheckout(string accountEmail);
         bool FinalizeCheckoutInfo(string accountEmail, CheckoutDto checkoutInfo);
-        OperationResult CreateOrderWithCheckoutInfo(string accountEmail, CheckoutDto checkoutInfo);
     }
 }

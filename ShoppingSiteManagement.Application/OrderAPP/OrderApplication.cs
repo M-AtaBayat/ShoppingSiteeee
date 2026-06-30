@@ -1,11 +1,11 @@
 ﻿using _0_Framework.Application;
 using _0_Framework.Domain;
+using ShoppingSiteManagement.Application.Contracts.CartAPC;
 using ShoppingSiteManagement.Application.Contracts.OrderAPC;
 using ShoppingSiteManagement.Domain.CartAgg;
 using ShoppingSiteManagement.Domain.OrderAgg;
 using ShoppingSiteManagement.Domain.ProductAgg;
 using ShoppingSiteManagement.Infrastructure.EFCore;
-using ShoppingSiteManagement.Infrastructure.EFCore.Repository;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,12 +15,11 @@ namespace ShoppingSiteManagement.Application.OrderAPP
 {
     public class OrderApplication : IOrderApplication
     {
-        private readonly ICartRepository _cartRepository;
         private readonly IOrderRepository _orderRepository;
+        private readonly ICartRepository _cartRepository;
         private readonly IProductRepository _productRepository;
         private readonly ShoppingSiteContext _dbContext;
 
-        // ✅ Constructor اضافه کن (اگر ندارد)
         public OrderApplication(IOrderRepository orderRepository, ICartRepository cartRepository, IProductRepository productRepository, ShoppingSiteContext dbContext)
         {
             _orderRepository = orderRepository;
@@ -29,7 +28,102 @@ namespace ShoppingSiteManagement.Application.OrderAPP
             _dbContext = dbContext;
         }
 
-        // 🟢 متد جدید برای ایجاد سفارش از سبد خریدی
+        // 🟢 متد جدید: ایجاد سفارش با اطلاعات کامل (نام، آدرس، تلفن و...)
+        public OperationResult CreateOrderWithCheckoutInfo(string accountEmail, CheckoutDto checkoutInfo, double shippingCost)
+        {
+            var operation = new OperationResult();
+
+            using var transaction = _dbContext.Database.BeginTransaction();
+            try
+            {
+                // 1) سبد رو بگیر
+                var cart = _cartRepository.GetActiveCartBy(accountEmail);
+                if (cart == null || !cart.Items.Any())
+                {
+                    transaction.Rollback();
+                    return operation.Failed("سبد خرید خالی است");
+                }
+
+                // 2) موجودی رو check کن
+                var items = cart.Items.ToList();
+                var productIds = items.Select(i => i.ProductId).Distinct().ToList();
+                var products = productIds.Select(id => _productRepository.Get(id)).ToList();
+
+                foreach (var item in items)
+                {
+                    var product = products.FirstOrDefault(p => p.Id == item.ProductId);
+                    if (product == null)
+                    {
+                        transaction.Rollback();
+                        return operation.Failed($"محصول یافت نشد");
+                    }
+
+                    if (product.StockCount < item.Count)
+                    {
+                        transaction.Rollback();
+                        return operation.Failed($"موجودی کافی نیست: {product.Name}");
+                    }
+                }
+
+                // 3) موجودی رو کاهش بده
+                foreach (var item in items)
+                {
+                    var product = products.First(p => p.Id == item.ProductId);
+                    product.ReduceStock(item.Count);
+                }
+
+                // 4) سفارش رو ایجاد کن **با مشخصات کاملی**
+                var trackingCode = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 12);
+                var totalProductsPrice = items.Sum(i => i.UnitPrice * i.Count);
+
+                var order = new Order(
+                    accountEmail: accountEmail,
+                    trackingCode: trackingCode,
+                    totalProductsPrice: totalProductsPrice,
+                    shippingCost: shippingCost,
+                    receiverName: checkoutInfo.Name,
+                    receiverPhoneNumber: checkoutInfo.Phone,
+                    province: checkoutInfo.Province,
+                    city: checkoutInfo.City,
+                    postalCode: checkoutInfo.Postal,
+                    address: checkoutInfo.Address
+                );
+
+                // 5) OrderItems رو اضافه کن
+                foreach (var item in items)
+                {
+                    var product = products.First(p => p.Id == item.ProductId);
+                    var orderItem = new OrderItem(
+                        orderId: 0,
+                        productId: item.ProductId,
+                        productName: product.Name,
+                        productImage: product.OrginalImage,
+                        unitPrice: item.UnitPrice,
+                        count: item.Count
+                    );
+                    order.Items.Add(orderItem);
+                }
+
+                // 6) Add و Save
+                _orderRepository.Add(order);
+                _dbContext.SaveChanges();
+
+                // 7) سبد رو تمام کن
+                cart.Finish();
+                _cartRepository.SaveChanges();
+
+                // 8) Commit
+                transaction.Commit();
+                return operation.Success($"سفارش شما با کد ردیابی {trackingCode} ثبت شد");
+            }
+            catch (Exception ex)
+            {
+                try { transaction.Rollback(); } catch { }
+                return operation.Failed($"خطا در ثبت سفارش: {ex.InnerException?.Message ?? ex.Message}");
+            }
+        }
+
+        // 🟢 متد قدیمی برای ایجاد سفارش از سبد خریدی
         public OperationResult CreateOrderFromCart(CreateOrderFromCartDto createOrderDto)
         {
             var operation = new OperationResult();
@@ -39,16 +133,14 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                 if (createOrderDto == null || !createOrderDto.Items.Any())
                     return operation.Failed("سبد خریدی خالی است.");
 
-                // تولید کد ردیابی یکتا
                 var trackingCode = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 12);
 
-                // ایجاد سفارش جدید
                 var order = new Order(
                     accountEmail: createOrderDto.AccountEmail,
                     trackingCode: trackingCode,
                     totalProductsPrice: createOrderDto.TotalProductsPrice,
                     shippingCost: createOrderDto.ShippingCost,
-                    receiverName: "", // اطلاعات بعد‌تر در صفحه نهایی‌سازی تکمیل می‌شود
+                    receiverName: "",
                     receiverPhoneNumber: "",
                     province: "",
                     city: "",
@@ -56,25 +148,20 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                     address: ""
                 );
 
-                // اضافه کردن آیتم‌های سفارش
                 foreach (var item in createOrderDto.Items)
                 {
                     var orderItem = new OrderItem(
-                        orderId: 0, // Order ID هنوز set نشده (به‌طور خودکار توسط EF تنظیم می‌شود)
+                        orderId: 0,
                         productId: item.ProductId,
                         productName: item.ProductName,
                         productImage: item.ProductImage,
                         unitPrice: item.UnitPrice,
                         count: item.Count
                     );
-
                     order.Items.Add(orderItem);
                 }
 
-                // ذخیره سفارش — این فقط به DbContext اضافه می‌کند، اما SAVE نمی‌کند
-                // SaveChanges در Checkout انجام می‌شود (که درون تراکنش است)
                 _orderRepository.Add(order);
-                // حذف این خط: _orderRepository.Save();
 
                 return operation.Success($"سفارش با کد ردیابی {trackingCode} ایجاد شد.");
             }
@@ -83,6 +170,7 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                 return operation.Failed($"خطا در ایجاد سفارش: {ex.Message}");
             }
         }
+
         public OperationResult ConfirmOrder(long id, string postTrackingCode)
         {
             var operation = new OperationResult();
@@ -212,7 +300,6 @@ namespace ShoppingSiteManagement.Application.OrderAPP
 
         public ActiveOrderDto GetActiveOrderForCheckout(string accountEmail)
         {
-            // پیدا کردن سفارشی که هنوز ارسال یا تحویل نشده و در مرحله پرداخت است
             var order = _orderRepository.GetOrdersByAccountEmail(accountEmail)
                 .Where(x => x.Status != OrderStatus.Sent && x.Status != OrderStatus.Delivered)
                 .OrderByDescending(x => x.Id)
@@ -249,96 +336,6 @@ namespace ShoppingSiteManagement.Application.OrderAPP
 
             _orderRepository.Save();
             return true;
-        }
-
-        public OperationResult CreateOrderWithCheckoutInfo(string accountEmail, CheckoutDto checkoutInfo)
-        {
-            var operation = new OperationResult();
-
-            // 1) سبد رو بگیر
-            var cart = _cartRepository.GetActiveCartBy(accountEmail);
-            if (cart == null || !cart.Items.Any())
-                return operation.Failed("سبد خرید خالی است");
-
-            // 2) تراکنش
-            using var transaction = _dbContext.Database.BeginTransaction();
-            try
-            {
-                // 3) موجودی رو check کن
-                var items = cart.Items.ToList();
-                var productIds = items.Select(i => i.ProductId).Distinct().ToList();
-                var products = productIds.Select(id => _productRepository.Get(id)).ToList();
-
-                foreach (var item in items)
-                {
-                    var product = products.FirstOrDefault(p => p.Id == item.ProductId);
-                    if (product == null)
-                    {
-                        transaction.Rollback();
-                        return operation.Failed($"محصول یافت نشد");
-                    }
-
-                    if (product.StockCount < item.Count)
-                    {
-                        transaction.Rollback();
-                        return operation.Failed($"موجودی کافی نیست: {product.Name}");
-                    }
-                }
-
-                // 4) موجودی رو کاهش بده
-                foreach (var item in items)
-                {
-                    var product = products.First(p => p.Id == item.ProductId);
-                    product.ReduceStock(item.Count);
-                }
-
-                // 5) سفارش رو ایجاد کن **با مشخصات کاملی**
-                var trackingCode = System.Guid.NewGuid().ToString().Replace("-", "").Substring(0, 12);
-                var order = new Order(
-                    accountEmail: accountEmail,
-                    trackingCode: trackingCode,
-                    totalProductsPrice: cart.TotalAmount,
-                    shippingCost: 0,
-                    receiverName: checkoutInfo.Name,
-                    receiverPhoneNumber: checkoutInfo.Phone,
-                    province: checkoutInfo.Province,
-                    city: checkoutInfo.City,
-                    postalCode: checkoutInfo.Postal,
-                    address: checkoutInfo.Address
-                );
-
-                // 6) OrderItems رو اضافه کن
-                foreach (var item in items)
-                {
-                    var product = products.First(p => p.Id == item.ProductId);
-                    var orderItem = new OrderItem(
-                        orderId: 0,
-                        productId: item.ProductId,
-                        productName: product.Name,
-                        productImage: product.OrginalImage,
-                        unitPrice: item.UnitPrice,
-                        count: item.Count
-                    );
-                    order.Items.Add(orderItem);
-                }
-
-                // 7) Add و Save
-                _orderRepository.Add(order);
-                _dbContext.SaveChanges();
-
-                // 8) سبد رو تمام کن
-                cart.Finish();
-                _cartRepository.SaveChanges();
-
-                // 9) Commit
-                transaction.Commit();
-                return operation.Success($"سفارش شما با کد ردیابی {trackingCode} ثبت شد");
-            }
-            catch (Exception ex)
-            {
-                try { transaction.Rollback(); } catch { }
-                return operation.Failed($"خطا در ثبت سفارش: {ex.InnerException?.Message ?? ex.Message}");
-            }
         }
     }
 }
