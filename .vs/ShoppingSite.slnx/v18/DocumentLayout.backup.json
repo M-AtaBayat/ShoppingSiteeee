@@ -3,52 +3,24 @@
   "WorkspaceRootPath": "D:\\Project\\Backend\\ShoppingSiteeee\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\Migrations\\20260630171521_OrderFieldsNullable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ShoppingSiteManagement.Infrastructure.EFCore\\Migrations\\20260630171521_OrderFieldsNullable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D4C4506B-A1B3-FC82-0423-7C8D670AFCF2}|ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj|d:\\project\\backend\\shoppingsiteeee\\shoppingsitemanagement.application\\cartapp\\cartapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D4C4506B-A1B3-FC82-0423-7C8D670AFCF2}|ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj|solutionrelative:shoppingsitemanagement.application\\cartapp\\cartapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{64588483-D427-9A10-A398-6C9D2B449A28}|ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj|d:\\project\\backend\\shoppingsiteeee\\shoppingsitemanagement.infrastructure.efcore\\mappings\\ordermapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{64588483-D427-9A10-A398-6C9D2B449A28}|ShoppingSiteManagement.Infrastructure.EFCore\\ShoppingSiteManagement.Infrastructure.EFCore.csproj|solutionrelative:shoppingsitemanagement.infrastructure.efcore\\mappings\\ordermapping.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5217DC08-5CA8-4E95-8843-52FD4E9A8C11}|ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj|d:\\project\\backend\\shoppingsiteeee\\shoppingsitemanagement.infrastructure.config\\shoppingsitebootstrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5217DC08-5CA8-4E95-8843-52FD4E9A8C11}|ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteManagement.Infrastructure.Config.csproj|solutionrelative:shoppingsitemanagement.infrastructure.config\\shoppingsitebootstrapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\pages\\basket.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\pages\\basket.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\pages\\basket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\pages\\basket.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D4C4506B-A1B3-FC82-0423-7C8D670AFCF2}|ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj|d:\\project\\backend\\shoppingsiteeee\\shoppingsitemanagement.application\\orderapp\\orderapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D4C4506B-A1B3-FC82-0423-7C8D670AFCF2}|ShoppingSiteManagement.Application\\ShoppingSiteManagement.Application.csproj|solutionrelative:shoppingsitemanagement.application\\orderapp\\orderapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\services\\paymentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{87E32F30-20A4-1E72-1F5F-7E4CB491088D}|ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj|d:\\project\\backend\\shoppingsiteeee\\shoppingsitemanagement.application.contracts\\orderapc\\iorderapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87E32F30-20A4-1E72-1F5F-7E4CB491088D}|ShoppingSiteManagement.Application.Contracts\\ShoppingSiteManagement.Application.Contracts.csproj|solutionrelative:shoppingsitemanagement.application.contracts\\orderapc\\iorderapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{44786AE6-5F2C-3A17-244F-5C49AC546C7C}|ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj|d:\\project\\backend\\shoppingsiteeee\\shoppingsitemanagement.domain\\productagg\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{44786AE6-5F2C-3A17-244F-5C49AC546C7C}|ShoppingSiteManagement.Domain\\ShoppingSiteManagement.Domain.csproj|solutionrelative:shoppingsitemanagement.domain\\productagg\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\pages\\paymenttransaction.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\pages\\paymenttransaction.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|d:\\project\\backend\\shoppingsiteeee\\servicehost\\pages\\basket.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5533BAD2-DE5E-42F9-8A55-C23FB474F0E8}|ServiceHost\\ServiceHost.csproj|solutionrelative:servicehost\\pages\\basket.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -63,157 +35,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20260630171521_OrderFieldsNullable.cs",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\Migrations\\20260630171521_OrderFieldsNullable.cs",
-              "RelativeDocumentMoniker": "ShoppingSiteManagement.Infrastructure.EFCore\\Migrations\\20260630171521_OrderFieldsNullable.cs",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\Migrations\\20260630171521_OrderFieldsNullable.cs",
-              "RelativeToolTip": "ShoppingSiteManagement.Infrastructure.EFCore\\Migrations\\20260630171521_OrderFieldsNullable.cs",
-              "ViewState": "AgIAAAAAAAAA5odFysDzvxQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T17:15:22.02Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "OrderMapping.cs",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\Mappings\\OrderMapping.cs",
-              "RelativeDocumentMoniker": "ShoppingSiteManagement.Infrastructure.EFCore\\Mappings\\OrderMapping.cs",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.EFCore\\Mappings\\OrderMapping.cs",
-              "RelativeToolTip": "ShoppingSiteManagement.Infrastructure.EFCore\\Mappings\\OrderMapping.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAwwAoAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T17:13:47.694Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "ShoppingSiteBootstrapper.cs",
               "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteBootstrapper.cs",
               "RelativeDocumentMoniker": "ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteBootstrapper.cs",
               "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteBootstrapper.cs",
               "RelativeToolTip": "ShoppingSiteManagement.Infrastructure.Config\\ShoppingSiteBootstrapper.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAowD4AAABDAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADQAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T15:36:58.719Z",
+              "WhenOpened": "2026-06-30T17:31:00.166Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "CartApplication.cs",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\CartAPP\\CartApplication.cs",
-              "RelativeDocumentMoniker": "ShoppingSiteManagement.Application\\CartAPP\\CartApplication.cs",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\CartAPP\\CartApplication.cs",
-              "RelativeToolTip": "ShoppingSiteManagement.Application\\CartAPP\\CartApplication.cs",
-              "ViewState": "AgIAAKQAAAAAAAAAAAAwwMwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T15:30:40.206Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.Development.json",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\appsettings.Development.json",
-              "RelativeDocumentMoniker": "ServiceHost\\appsettings.Development.json",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\appsettings.Development.json",
-              "RelativeToolTip": "ServiceHost\\appsettings.Development.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-06-30T17:07:03.912Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Basket.cshtml.cs",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Pages\\Basket.cshtml.cs",
-              "RelativeDocumentMoniker": "ServiceHost\\Pages\\Basket.cshtml.cs",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Pages\\Basket.cshtml.cs",
-              "RelativeToolTip": "ServiceHost\\Pages\\Basket.cshtml.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAAADAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T16:27:01.55Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\appsettings.json",
-              "RelativeDocumentMoniker": "ServiceHost\\appsettings.json",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\appsettings.json",
-              "RelativeToolTip": "ServiceHost\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAACEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-06-30T17:06:40.006Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Program.cs",
-              "RelativeDocumentMoniker": "ServiceHost\\Program.cs",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Program.cs",
-              "RelativeToolTip": "ServiceHost\\Program.cs",
-              "ViewState": "AgIAAFAAAAAAAAAAAAAUwGYAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T15:29:46.175Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Basket.cshtml",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Pages\\Basket.cshtml",
-              "RelativeDocumentMoniker": "ServiceHost\\Pages\\Basket.cshtml",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Pages\\Basket.cshtml",
-              "RelativeToolTip": "ServiceHost\\Pages\\Basket.cshtml",
-              "ViewState": "AgIAADkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-06-30T16:26:23.291Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
               "Title": "OrderApplication.cs",
               "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\OrderAPP\\OrderApplication.cs",
               "RelativeDocumentMoniker": "ShoppingSiteManagement.Application\\OrderAPP\\OrderApplication.cs",
               "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application\\OrderAPP\\OrderApplication.cs",
               "RelativeToolTip": "ShoppingSiteManagement.Application\\OrderAPP\\OrderApplication.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAC0BAAAAAAAAAAAwwFUBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T16:17:00.919Z",
+              "WhenOpened": "2026-06-30T17:27:38.358Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PaymentService.cs",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Services\\PaymentService.cs",
-              "RelativeDocumentMoniker": "ServiceHost\\Services\\PaymentService.cs",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Services\\PaymentService.cs",
-              "RelativeToolTip": "ServiceHost\\Services\\PaymentService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "IOrderApplication.cs",
+              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\OrderAPC\\IOrderApplication.cs",
+              "RelativeDocumentMoniker": "ShoppingSiteManagement.Application.Contracts\\OrderAPC\\IOrderApplication.cs",
+              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Application.Contracts\\OrderAPC\\IOrderApplication.cs",
+              "RelativeToolTip": "ShoppingSiteManagement.Application.Contracts\\OrderAPC\\IOrderApplication.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAYwCoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T15:36:21.647Z",
+              "WhenOpened": "2026-06-30T17:26:48.312Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ProductAgg\\Product.cs",
-              "RelativeDocumentMoniker": "ShoppingSiteManagement.Domain\\ProductAgg\\Product.cs",
-              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ShoppingSiteManagement.Domain\\ProductAgg\\Product.cs",
-              "RelativeToolTip": "ShoppingSiteManagement.Domain\\ProductAgg\\Product.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAIwGYAAAAJAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "PaymentTransaction.cshtml.cs",
+              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Pages\\PaymentTransaction.cshtml.cs",
+              "RelativeDocumentMoniker": "ServiceHost\\Pages\\PaymentTransaction.cshtml.cs",
+              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Pages\\PaymentTransaction.cshtml.cs",
+              "RelativeToolTip": "ServiceHost\\Pages\\PaymentTransaction.cshtml.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAAuwAwAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-30T15:34:29.207Z",
+              "WhenOpened": "2026-06-30T17:26:15.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Basket.cshtml.cs",
+              "DocumentMoniker": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Pages\\Basket.cshtml.cs",
+              "RelativeDocumentMoniker": "ServiceHost\\Pages\\Basket.cshtml.cs",
+              "ToolTip": "D:\\Project\\Backend\\ShoppingSiteeee\\ServiceHost\\Pages\\Basket.cshtml.cs",
+              "RelativeToolTip": "ServiceHost\\Pages\\Basket.cshtml.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAwwEMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-30T17:25:40.453Z",
               "EditorCaption": ""
             }
           ]

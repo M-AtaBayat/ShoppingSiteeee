@@ -19,7 +19,7 @@ namespace ServiceHost.Pages
         }
 
         [BindProperty]
-        public CheckoutDto CheckoutInfo { get; set; } // استفاده از دی‌تی‌او جدید لایه اپلیکیشن
+        public CheckoutDto CheckoutInfo { get; set; }
 
         public int TotalItemsCount { get; set; }
         public double CartAmount { get; set; }
@@ -28,16 +28,16 @@ namespace ServiceHost.Pages
 
         public IActionResult OnGet()
         {
-            var order = _orderApplication.GetActiveOrderForCheckout(User.Identity.Name);
+            // ✅ فقط سبد رو نمایش بده (سفارش را check نکن)
+            var cart = _cartApplication.GetCart(User.Identity.Name);
 
-            // 🛑 لایف‌سیور: اگر سفارش ثبت نشده باشد، اینجا نال برمی‌گردد و ردیراکت می‌شود به سبد خرید.
-            if (order == null)
+            if (cart == null || !cart.Items.Any())
                 return RedirectToPage("/Basket");
 
-            TotalItemsCount = order.TotalItemsCount;
-            CartAmount = order.TotalProductsPrice;
-            ShippingCost = order.ShippingCost;
-            FinalTotalAmount = order.FinalAmount;
+            TotalItemsCount = cart.TotalItems;
+            CartAmount = cart.TotalAmount;
+            ShippingCost = 0; // یا محاسبه بر اساس منطق خودت
+            FinalTotalAmount = CartAmount + ShippingCost;
 
             return Page();
         }
@@ -50,26 +50,26 @@ namespace ServiceHost.Pages
                 return Page();
             }
 
-            var isSuccess = _orderApplication.FinalizeCheckoutInfo(User.Identity.Name, CheckoutInfo);
+            // ✅ **اینجا** درست می‌شود: سفارش ایجاد می‌شود + موجودی کاهش می‌یابد
+            var createOrderResult = _orderApplication.CreateOrderWithCheckoutInfo(
+                User.Identity.Name,
+                CheckoutInfo
+            );
 
-            if (isSuccess)
+            if (!createOrderResult.IsSuccessed)
             {
-                return RedirectToPage("/CurrentOrders");
+                ModelState.AddModelError("", createOrderResult.Message);
+                OnGet();
+                return Page();
             }
 
-            return RedirectToPage("/Basket");
+            // ✅ سفارش ثبت شد، سبد تمام شد
+            return RedirectToPage("/CurrentOrders");
         }
 
         public IActionResult OnPostCancel()
         {
-            _cartApplication.ReleaseReservedStock(User.Identity.Name);
-            return RedirectToPage("/Basket");
-        }
-
-        public IActionResult OnGetTimeout()
-        {
-            _cartApplication.ReleaseReservedStock(User.Identity.Name);
-            TempData["StockErrorMessage"] = "زمان ۱۰ دقیقه شما به پایان رسید و موجودی به انبار برگشت. لطفا دوباره تلاش کنید.";
+            // ✅ اگر فرم cancel شود، سبد باقی می‌ماند
             return RedirectToPage("/Basket");
         }
     }

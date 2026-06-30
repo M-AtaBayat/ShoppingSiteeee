@@ -53,16 +53,16 @@ namespace ServiceHost.Pages
 
         public IActionResult OnPostCheckout()
         {
-            var result = _cartApplication.Checkout(User.Identity.Name);
-            if (result.IsSuccessed)
+            // ✅ فقط ریدایرکت به PaymentTransaction (بدون ایجاد سفارش)
+            var cart = _cartApplication.GetCart(User.Identity.Name);
+            if (cart == null || !cart.Items.Any())
             {
-                // 🟢 تغییر مهم: هدایت به صفحه پرداخت همراه با شناسه سفارش یا پیغام موفقیت
-                // اگر متد Checkout شما در خروجی (result) شناسه سفارش رو میده، از اون استفاده کن، در غیر این صورت معمولی برو ولی با آگاهی از وضعیت دیتابیس
-                return RedirectToPage("/PaymentTransaction");
+                StockErrorMessage = "سبد خرید خالی است";
+                return RedirectToPage();
             }
 
-            StockErrorMessage = result.Message;
-            return RedirectToPage();
+            // ✅ اگر موجودی کافی است، برو فرم
+            return RedirectToPage("/PaymentTransaction");
         }
     }
 }

@@ -48,7 +48,14 @@ namespace ShoppingSiteManagement.Infrastructure.Config
             services.AddTransient<IProductCategoryQuery, ProductCategoryQuery>();
 
             // Order
-            services.AddTransient<IOrderApplication, OrderApplication>();
+            services.AddTransient<IOrderApplication>(sp =>
+    new OrderApplication(
+        sp.GetRequiredService<IOrderRepository>(),
+        sp.GetRequiredService<ICartRepository>(),
+        sp.GetRequiredService<IProductRepository>(),
+        sp.GetRequiredService<ShoppingSiteContext>()
+    )
+);
             services.AddTransient<IOrderRepository, OrderRepository>();
 
             // Order contact

@@ -54,5 +54,6 @@ namespace ShoppingSiteManagement.Application.Contracts.OrderAPC
         OrderViewModel GetByPostTrackingCode(string postTrackingCode);
         ActiveOrderDto GetActiveOrderForCheckout(string accountEmail);
         bool FinalizeCheckoutInfo(string accountEmail, CheckoutDto checkoutInfo);
+        OperationResult CreateOrderWithCheckoutInfo(string accountEmail, CheckoutDto checkoutInfo);
     }
 }
