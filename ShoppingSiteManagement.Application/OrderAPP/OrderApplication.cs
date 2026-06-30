@@ -60,9 +60,10 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                     order.Items.Add(orderItem);
                 }
 
-                // ذخیره سفارش
+                // ذخیره سفارش — این فقط به DbContext اضافه می‌کند، اما SAVE نمی‌کند
+                // SaveChanges در Checkout انجام می‌شود (که درون تراکنش است)
                 _orderRepository.Add(order);
-                _orderRepository.Save();
+                // حذف این خط: _orderRepository.Save();
 
                 return operation.Success($"سفارش با کد ردیابی {trackingCode} ایجاد شد.");
             }
@@ -71,7 +72,6 @@ namespace ShoppingSiteManagement.Application.OrderAPP
                 return operation.Failed($"خطا در ایجاد سفارش: {ex.Message}");
             }
         }
-
         public OperationResult ConfirmOrder(long id, string postTrackingCode)
         {
             var operation = new OperationResult();
