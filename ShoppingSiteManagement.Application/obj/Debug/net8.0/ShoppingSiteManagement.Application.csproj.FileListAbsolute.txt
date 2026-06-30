@@ -24,9 +24,11 @@ D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\0_Framework.dll
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\ShoppingSiteManagement.Application.Contracts.dll
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\ShoppingSiteManagement.Domain.dll
+D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\ShoppingSiteManagement.Infrastructure.EFCore.dll
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\0_Framework.pdb
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\ShoppingSiteManagement.Application.Contracts.pdb
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\ShoppingSiteManagement.Domain.pdb
+D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\ShoppingSiteManagement.Infrastructure.EFCore.pdb
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\obj\Debug\net8.0\ShoppingSiteManagement.Application.csproj.AssemblyReference.cache
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\obj\Debug\net8.0\ShoppingSiteManagement.Application.GeneratedMSBuildEditorConfig.editorconfig
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\obj\Debug\net8.0\ShoppingSiteManagement.Application.AssemblyInfoInputs.cache
@@ -38,5 +40,3 @@ D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\obj\Debug\
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\obj\Debug\net8.0\refint\ShoppingSiteManagement.Application.dll
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\obj\Debug\net8.0\ShoppingSiteManagement.Application.pdb
 D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\obj\Debug\net8.0\ref\ShoppingSiteManagement.Application.dll
-D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\ShoppingSiteManagement.Infrastructure.EFCore.dll
-D:\Project\Backend\ShoppingSiteeee\ShoppingSiteManagement.Application\bin\Debug\net8.0\ShoppingSiteManagement.Infrastructure.EFCore.pdb

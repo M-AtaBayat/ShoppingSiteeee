@@ -133,8 +133,8 @@ D:\Project\Backend\ShoppingSite\ServiceHost\obj\Debug\net8.0\staticwebassets.upT
 D:\Project\Backend\ShoppingSiteeee\ServiceHost\bin\Debug\net8.0\appsettings.Development.json
 D:\Project\Backend\ShoppingSiteeee\ServiceHost\bin\Debug\net8.0\appsettings.json
 D:\Project\Backend\ShoppingSiteeee\ServiceHost\bin\Debug\net8.0\dotnet-tools.json
-D:\Project\Backend\ShoppingSiteeee\ServiceHost\bin\Debug\net8.0\ServiceHost.staticwebassets.endpoints.json
 D:\Project\Backend\ShoppingSiteeee\ServiceHost\bin\Debug\net8.0\ServiceHost.staticwebassets.runtime.json
+D:\Project\Backend\ShoppingSiteeee\ServiceHost\bin\Debug\net8.0\ServiceHost.staticwebassets.endpoints.json
 D:\Project\Backend\ShoppingSiteeee\ServiceHost\bin\Debug\net8.0\ServiceHost.exe
 D:\Project\Backend\ShoppingSiteeee\ServiceHost\bin\Debug\net8.0\ServiceHost.deps.json
 D:\Project\Backend\ShoppingSiteeee\ServiceHost\bin\Debug\net8.0\ServiceHost.runtimeconfig.json

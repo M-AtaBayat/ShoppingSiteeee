@@ -23,13 +23,14 @@ namespace ShoppingSiteManagement.Infrastructure.EFCore.Mappings
             builder.Property(x => x.ShippingCost).HasPrecision(18, 2);
             builder.Property(x => x.FinalAmount).HasPrecision(18, 2);
 
-            builder.Property(x => x.Province).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.City).IsRequired().HasMaxLength(100);
+            // ✅ تغییر: این فیلدها Required نیستند (بعداً تکمیل می‌شوند)
+            builder.Property(x => x.Province).HasMaxLength(100);
+            builder.Property(x => x.City).HasMaxLength(100);
 
             builder.Property(x => x.AccountEmail).IsRequired().HasMaxLength(250);
-            builder.Property(x => x.ReceiverName).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.ReceiverPhoneNumber).IsRequired().HasMaxLength(20);
-            builder.Property(x => x.Address).IsRequired().HasMaxLength(500);
+            builder.Property(x => x.ReceiverName).HasMaxLength(100);           // ✅ حذف IsRequired()
+            builder.Property(x => x.ReceiverPhoneNumber).HasMaxLength(20);     // ✅ حذف IsRequired()
+            builder.Property(x => x.Address).HasMaxLength(500);               // ✅ حذف IsRequired()
             builder.Property(x => x.PostalCode).HasMaxLength(20);
 
             builder.HasMany(x => x.Items)

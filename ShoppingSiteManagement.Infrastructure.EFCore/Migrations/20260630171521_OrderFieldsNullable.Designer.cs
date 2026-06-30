@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ShoppingSiteManagement.Infrastructure.EFCore;
 
@@ -11,9 +12,11 @@ using ShoppingSiteManagement.Infrastructure.EFCore;
 namespace ShoppingSiteManagement.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(ShoppingSiteContext))]
-    partial class ShoppingSiteContextModelSnapshot : ModelSnapshot
+    [Migration("20260630171521_OrderFieldsNullable")]
+    partial class OrderFieldsNullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

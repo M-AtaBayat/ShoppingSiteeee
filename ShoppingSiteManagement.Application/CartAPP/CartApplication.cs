@@ -1,4 +1,5 @@
 ﻿using _0_Framework.Application;
+using Microsoft.EntityFrameworkCore;
 using ShoppingSiteManagement.Application.Contracts.CartAPC;
 using ShoppingSiteManagement.Application.Contracts.OrderAPC;
 using ShoppingSiteManagement.Application.OrderAPP;
@@ -121,7 +122,7 @@ namespace ShoppingSiteManagement.Application.CartAPP
             using var transaction = _dbContext.Database.BeginTransaction();
             try
             {
-                // 1) خواندن و بررسی موجودی
+                // 1) بررسی موجودی
                 var items = cart.Items.ToList();
                 var productIds = items.Select(i => i.ProductId).Distinct().ToList();
                 var products = productIds.Select(id => _productRepository.Get(id)).ToList();
@@ -146,18 +147,10 @@ namespace ShoppingSiteManagement.Application.CartAPP
                 foreach (var item in items)
                 {
                     var product = products.First(p => p.Id == item.ProductId);
-                    try
-                    {
-                        product.ReduceStock(item.Count);
-                    }
-                    catch (Exception stockEx)
-                    {
-                        transaction.Rollback();
-                        return operation.Failed($"خطا در کاهش موجودی: {stockEx.Message}");
-                    }
+                    product.ReduceStock(item.Count);
                 }
 
-                // 3) ساخت سفارش
+                // 3) ساخت Order DTO
                 var createOrderDto = new CreateOrderFromCartDto
                 {
                     AccountEmail = accountEmail,
@@ -187,27 +180,29 @@ namespace ShoppingSiteManagement.Application.CartAPP
                 // 4) تکمیل سبد
                 cart.Finish();
 
-                // 5) ذخیره نهایی
+                // 5) ذخیره همه تغییرات
                 try
                 {
-                    _cartRepository.SaveChanges();
+                    _dbContext.SaveChanges();
                 }
                 catch (Exception saveEx)
                 {
                     transaction.Rollback();
-                    return operation.Failed($"خطا در ذخیره سفارش در دیتابیس: {saveEx.InnerException?.Message ?? saveEx.Message}");
+                    var innerMsg = saveEx.InnerException?.Message ?? saveEx.Message;
+                    return operation.Failed($"خطا در ذخیره دیتابیس: {innerMsg}");
                 }
 
-                // 6) commit تراکنش
+                // 6) تأیید تراکنش
                 transaction.Commit();
-                return operation.Success("سفارش شما با موفقیت ایجاد شد.");
+                return operation.Success("سفارش شما ایجاد شد. لطفاً اطلاعات ارسال را تکمیل کنید.");
             }
             catch (Exception ex)
             {
                 try { transaction.Rollback(); } catch { }
-                return operation.Failed($"خطای نامشخص در checkout: {ex.InnerException?.Message ?? ex.Message}");
+                return operation.Failed($"خطای غیرمنتظره: {ex.Message}");
             }
         }
+
         public OperationResult ReleaseReservedStock(string accountEmail)
         {
             var operation = new OperationResult();
