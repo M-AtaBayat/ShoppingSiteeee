@@ -4,7 +4,7 @@
     ViewData["Title"] = "سفارش‌های جاری";
 }
 <style>
-    .order-card::before{
+    .order-card::before {
         display: none !important;
     }
 </style>
@@ -65,6 +65,8 @@
                                             <span class="info-label">رنگ:</span>
                                             <span class="color-box" style="background:@item.Color; width: 15px; height: 15px;"></span>
                                         </div>
+                                        <!-- اگر میخوای فقط قیمت واحد و جمع رو ببینی -->
+                                        <div class="info-row"><span class="info-label">جمع کالا:</span> <strong>@item.TotalItemPrice.ToString("N0") تومان</strong></div>
                                     </small>
                                 </div>
                                 <div>@item.Price.ToString("N0") تومان</div>

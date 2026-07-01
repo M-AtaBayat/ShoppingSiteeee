@@ -239,6 +239,8 @@
         }
 </style>
 
+<!-- فقط این بخش script تغییر کن - خط 250-310 -->
+<!-- فقط این بخش script تغییر کن - خط 243-310 -->
 @section Scripts {
     <script>
         function openSendModal(id, code) {
@@ -247,7 +249,7 @@
             new bootstrap.Modal(document.getElementById('sendModal')).show();
         }
 
-                function showDetails(order) {
+        function showDetails(order) {
             const body = document.getElementById('detailsBody');
 
             let itemsRows = '';
@@ -259,9 +261,9 @@
                             <td><img src="/${imgSrc}" class="order-item-thumb"></td>
                             <td class="fw-bold text-primary">${item.productName || '---'}</td>
                             <td>
-                                            <div style="background-color:${item.Color} ; width:20px; height:20px; border-radius:50%; margin:auto; border:1px solid #ddd;"></div>
-                                        </td>
-                            <td>${item.size ? `<span class="badge-size">${item.size}</span>` : '<span class="text-muted">—</span>'}</td>
+                                <div style="width:30px; height:30px; border-radius:50%; margin:auto; border:2px solid #ddd; background-color: ${item.color || '#ccc'};"></div>
+                            </td>
+                            <td><span class="badge-size">${item.size || '—'}</span></td>
                             <td><span class="badge bg-secondary">${item.count}</span></td>
                             <td>${item.unitPrice.toLocaleString()}</td>
                             <td class="text-success fw-bold">${item.totalItemPrice.toLocaleString()}</td>

@@ -213,91 +213,70 @@
     }
 </style>
 
-
+<!-- فقط این بخش script تغییر کن - خط 243-310 -->
 @section Scripts {
     <script>
+        function openSendModal(id, code) {
+            document.getElementById('modalOrderId').value = id;
+            document.getElementById('modalTrackingCode').innerText = code;
+            new bootstrap.Modal(document.getElementById('sendModal')).show();
+        }
+
         function showDetails(order) {
             const body = document.getElementById('detailsBody');
 
-            let itemsTable = `
-                <div class="mt-4">
-                    <h6 class="fw-bold border-bottom pb-2">لیست محصولات تحویل شده:</h6>
-                    <div class="table-responsive">
-                        <table class="table table-sm table-bordered text-center align-middle">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>تصویر</th>
-                                    <th style="min-width:150px;">نام محصول</th>
-                                    <th>تعداد</th>
-                                    <th>قیمت واحد</th>
-                                    <th>جمع کالا</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            `;
-
+            let itemsRows = '';
             if (order.items && order.items.length > 0) {
                 order.items.forEach(item => {
                     let imgSrc = item.productImage;
-                    itemsTable += `
-                        <tr class="">
-                            <td><img src="/${imgSrc}" style="width: 45px; height: 45px; object-fit: cover; border-radius: 5px;"></td>
-                            <td class="text-center fw-bold text-primary">${item.productName || '---'}</td>
-                            <td><span class="badge bg-dark">${item.count}</span></td>
+                    itemsRows += `
+                        <tr>
+                            <td><img src="/${imgSrc}" class="order-item-thumb"></td>
+                            <td class="fw-bold text-primary">${item.productName || '---'}</td>
+                            <td>
+                                <div style="width:30px; height:30px; border-radius:50%; margin:auto; border:2px solid #ddd; background-color: ${item.color || '#ccc'};"></div>
+                            </td>
+                            <td><span class="badge-size">${item.size || '—'}</span></td>
+                            <td><span class="badge bg-secondary">${item.count}</span></td>
                             <td>${item.unitPrice.toLocaleString()}</td>
                             <td class="text-success fw-bold">${item.totalItemPrice.toLocaleString()}</td>
                         </tr>
                     `;
                 });
             } else {
-                itemsTable += `<tr><td colspan="5" class="text-danger">اقلامی ثبت نشده است.</td></tr>`;
+                itemsRows = `<tr><td colspan="7" class="text-danger py-3">آیتمی یافت نشد یا در دیتابیس ثبت نشده است!</td></tr>`;
             }
 
-            itemsTable += `</tbody></table></div></div>`;
-
             body.innerHTML = `
-                <div class="p-2">
-                    <div class="row mb-3">
-                        <div class="col-12">
-                            <p class="mb-0 text-muted">کد پیگیری سایت:</p>
-                            <h5 class="fw-bold">${order.trackingCode}</h5>
-                        </div>
-                        <div class="col-12 text-end">
-                            <p class="mb-0 text-muted">کد رهگیری پست:</p>
-                            <h5 class="text-success fw-bold">${order.postTrackingCode || '---'}</h5>
-                        </div>
+                <div class="order-info-card">
+                    <div class="row g-2">
+                        <div class="col-md-6 order-info-row"><i class="bi bi-hash"></i><b>کد پیگیری:</b> <span class="text-primary">${order.trackingCode}</span></div>
+                        <div class="col-md-6 order-info-row"><i class="bi bi-clock-history"></i><b>زمان ثبت:</b> ${order.creationDatePersian}</div>
+                        <div class="col-md-6 order-info-row"><i class="bi bi-person"></i><b>گیرنده:</b> ${order.receiverName}</div>
+                        <div class="col-md-6 order-info-row"><i class="bi bi-telephone"></i><b>تماس:</b> ${order.receiverPhoneNumber}</div>
+                        <div class="col-md-12 order-info-row"><i class="bi bi-geo-alt"></i><b>آدرس:</b> ${order.province}، ${order.city}، ${order.address}</div>
+                        <div class="col-md-6 order-info-row"><i class="bi bi-mailbox"></i><b>کد پستی:</b> ${order.postalCode}</div>
                     </div>
-                    <div class="row bg-light p-3 rounded mb-3">
-                        <div class="col-md-6 border-end">
-                            <h6><b>مشخصات مشتری:</b></h6>
-                            <span class="mb-1">${order.receiverName}</span> - 
-                            <span class="mb-1 small text-muted">${order.receiverPhoneNumber}</span>
-                        </div>
-                        <div class="col-md-6 ps-md-4">
-                            <h6><b>آدرس تحویل:</b></h6>
-                            <p class="small mb-0">${order.province}، ${order.city}، ${order.address}</p>
-                        </div>
+                </div>
+
+                <div class="order-items-card">
+                    <h6><i class="bi bi-bag-check"></i> اقلام سفارش</h6>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-borderless text-center align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>تصویر</th><th>نام محصول</th><th>رنگ</th><th>سایز</th>
+                                    <th>تعداد</th><th>قیمت واحد</th><th>جمع</th>
+                                </tr>
+                            </thead>
+                            <tbody>${itemsRows}</tbody>
+                        </table>
                     </div>
-                    <div class="row text-center mb-3">
-                        <div class="col-4 border-end">
-                            <p class="small text-muted mb-0">ثبت سفارش</p>
-                            <p class="fw-bold small">${order.creationDatePersian}</p>
-                        </div>
-                        <div class="col-4 border-end">
-                            <p class="small text-muted mb-0">تاریخ ارسال</p>
-                            <p class="fw-bold small">${order.sentDate ? new Date(order.sentDate).toLocaleDateString('fa-IR') : '---'}</p>
-                        </div>
-                        <div class="col-4">
-                            <p class="small text-muted mb-0">تاریخ تحویل نهایی</p>
-                            <p class="fw-bold text-success small">${order.deliveredDate ? new Date(order.deliveredDate).toLocaleDateString('fa-IR') : '---'}</p>
-                        </div>
-                    </div>
-                    ${itemsTable}
-                    <hr>
-                    <div class="d-flex justify-content-between align-items-center bg-dark text-white p-3 rounded">
-                        <h6 class="mb-0">جمع کل واریزی (شامل هزینه ارسال):</h6>
-                        <h5 class="mb-0 fw-bold">${order.finalAmount.toLocaleString()} تومان</h5>
-                    </div>
+                </div>
+
+                <div class="order-total-bar">
+                    <span><i class="bi bi-wallet2"></i> مبلغ نهایی (با هزینه ارسال)</span>
+                    <span>${order.finalAmount.toLocaleString()} تومان</span>
                 </div>
             `;
 
